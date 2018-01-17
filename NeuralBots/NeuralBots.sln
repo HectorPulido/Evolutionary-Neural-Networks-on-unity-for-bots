@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralBots.CSharp", "NeuralBots.CSharp.csproj", "{EF9B8BC5-DF02-8D49-BF4E-251F6172962D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralBots.CSharp.Plugins", "NeuralBots.CSharp.Plugins.csproj", "{841D3CB4-E4EE-516E-311E-C4710F1BA800}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralBots.CSharp.Editor.Plugins", "NeuralBots.CSharp.Editor.Plugins.csproj", "{12006177-6B97-C441-242D-F37EC6ED691F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF9B8BC5-DF02-8D49-BF4E-251F6172962D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF9B8BC5-DF02-8D49-BF4E-251F6172962D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF9B8BC5-DF02-8D49-BF4E-251F6172962D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF9B8BC5-DF02-8D49-BF4E-251F6172962D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{841D3CB4-E4EE-516E-311E-C4710F1BA800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{841D3CB4-E4EE-516E-311E-C4710F1BA800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{841D3CB4-E4EE-516E-311E-C4710F1BA800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{841D3CB4-E4EE-516E-311E-C4710F1BA800}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12006177-6B97-C441-242D-F37EC6ED691F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12006177-6B97-C441-242D-F37EC6ED691F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12006177-6B97-C441-242D-F37EC6ED691F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12006177-6B97-C441-242D-F37EC6ED691F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
