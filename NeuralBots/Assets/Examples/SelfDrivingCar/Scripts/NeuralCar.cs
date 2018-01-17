@@ -4,6 +4,7 @@ using UnityEngine;
 using Evolutionary_perceptron.NeuralBot;
 
 [RequireComponent(typeof(UnityStandardAssets.Vehicles.Car.CarController))]
+[RequireComponent(typeof(NeuralBot))]
 public class NeuralCar : MonoBehaviour
 {
     UnityStandardAssets.Vehicles.Car.CarController m_Car;
@@ -25,7 +26,7 @@ public class NeuralCar : MonoBehaviour
         inputs = SensorsInfo();
         outputs = neuralBot.SetInput(inputs);
         m_Car.Move((float)outputs[0,0],
-                   1 + (float)outputs[0,1],
+                   1,
                    0,//(float)outputs[2] * 2f - 1,//(float)outputs[2] * 2f - 1,
                    0);//(float)outputs[3] * 2f - 1);
     }

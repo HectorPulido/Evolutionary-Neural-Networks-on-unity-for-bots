@@ -1256,7 +1256,7 @@ MonoBehaviour:
   useRelativeDataPath: 1
   dataPath: /Car.bin
   numberOfGenerationsToSave: 10
-  neuronsPerLayer: 05000000060000000600000002000000
+  neuronsPerLayer: 05000000060000000600000001000000
   seed: 1
   mutationRate: 0.3
   maxPerturbation: 1.5

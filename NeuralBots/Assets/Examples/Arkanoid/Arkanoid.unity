@@ -41570,7 +41570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112504908995b834e88df8e27a77536f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataManagment: 0
+  dataManagment: 1
   useRelativeDataPath: 1
   dataPath: /Arkanoid.bin
   numberOfGenerationsToSave: 15
