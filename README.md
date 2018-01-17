@@ -13,7 +13,7 @@ Now the neural network is just a matematical function that can imitate or aproxi
 
 Here the Genetic algorithm can help us, just crossover a lot of neural networks and choose the most adapted one
 
-![How it works](https://github.com/HectorPulido/Evolutionary-Neural-Networks-on-unity-for-bots/blob/master/Images/How%20it%20works.png "How it works")
+![How it works](https://github.com/HectorPulido/Evolutionary-Neural-Networks-on-unity-for-bots/blob/master/Images/How%20it%20works.jpg "How it works")
 
 
 ## WHY (MOTIVATION)
@@ -33,14 +33,14 @@ You can save your trainded bot as prefab, make sure you set as false the debug o
 ## EXAMPLES
 In this moments there are 2 examples 
 ### Self driving car
-![Self driving car](https://github.com/HectorPulido/Evolutionary-Neural-Networks-on-unity-for-bots/blob/master/Images/SelfDriving%20car.PNG?raw=true "Self driving car")
+![Self driving car](https://github.com/HectorPulido/Evolutionary-Neural-Networks-on-unity-for-bots/blob/master/Images/SelfDriving%20car.jpg?raw=true "Self driving car")
 
 This is the most complete example right now, it can be trained on just 10 generations, the sensors are Raycast and the actuator is the Unity Standard Asset Vehicle Car
 
 The fitnes function is, how many checkpoints it touch.
 
 ### Arkanoid Bot
-![Arkanoid Bot](https://github.com/HectorPulido/Evolutionary-Neural-Networks-on-unity-for-bots/blob/master/Images/Arkanoid.PNG?raw=true "Arkanoid Bot")
+![Arkanoid Bot](https://github.com/HectorPulido/Evolutionary-Neural-Networks-on-unity-for-bots/blob/master/Images/Arkanoid.jpg?raw=true "Arkanoid Bot")
 
 This is a bot that can play Arkanoid, but is not finished yet, I don't really know what the fitness function must be
 
