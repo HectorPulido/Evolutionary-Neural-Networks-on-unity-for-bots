@@ -27,7 +27,7 @@ You need two things a mendel machine (a trainer if you like the concept), to use
 
 And you also need a interpreter of the neural bot class this class will act like a Senses and Actuators from the body (the individual), I recomend that the sensors where raycast (o raycast2D) or any lineal information, this class also can change the fitness of the neuralbot.
 
-## When you finish to train...
+### When you finish to train...
 You can save your trainded bot as prefab, make sure you set as false the debug option on the neural bot component. Now you have a full trained bot ready to be proved.
 
 ## EXAMPLES
