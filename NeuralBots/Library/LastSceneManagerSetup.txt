@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Examples/Arkanoid/Arkanoid.unity
+- path: Assets/Examples/SelfDrivingCar/Self Driving car Scene.unity
   isLoaded: 1
   isActive: 1

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+
 namespace LinearAlgebra
 {
-    public class Helper
+    public static class Helper
     {
         public static bool SaveMatrix(Matrix m, string directory)
         {
@@ -75,29 +76,38 @@ namespace LinearAlgebra
         }
         public static bool LoadMatrix(out Matrix[] m, string directory)
         {
-            FileStream fs = new FileStream(directory, FileMode.Open);
             try
             {
-                BinaryFormatter bf = new BinaryFormatter();
-
-                double[][,] _m = (double[][,])bf.Deserialize(fs);
-                m = new Matrix[_m.Length];
-
-                for (int i = 0; i < _m.Length; i++)
+                FileStream fs = new FileStream(directory, FileMode.Open);
+                try
                 {
-                    m[i] = _m[i];
-                }                
+                    BinaryFormatter bf = new BinaryFormatter();
+
+                    double[][,] _m = (double[][,])bf.Deserialize(fs);
+                    m = new Matrix[_m.Length];
+
+                    for (int i = 0; i < _m.Length; i++)
+                    {
+                        m[i] = _m[i];
+                    }
+                }
+                catch (SerializationException e)
+                {
+                    Console.WriteLine("Failed to deserializate: " + e.Message);
+                    m = null;
+                    return false;
+                }
+                finally
+                {
+                    fs.Close();
+                }
             }
-            catch (SerializationException e)
+            catch (Exception)
             {
-                Console.WriteLine("Failed to deserializate: " + e.Message);
                 m = null;
                 return false;
             }
-            finally
-            {
-                fs.Close();
-            }
+
             return true;
         }
         public static bool ReadCsv(out string[][]data, string directory, char separator = ';')
