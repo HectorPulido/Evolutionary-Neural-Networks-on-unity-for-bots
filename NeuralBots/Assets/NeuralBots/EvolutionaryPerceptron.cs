@@ -7,7 +7,7 @@ namespace Evolutionary_perceptron
     [Serializable]
     public struct Perceptron
     {
-        public Matrix[] W;
+        public FloatMatrix[] W;
         public int LayerCount { get { return W.Length + 1; } }
         public Genoma genoma { get { return new Genoma(W); } }
 
@@ -17,40 +17,40 @@ namespace Evolutionary_perceptron
         }
         public Perceptron(Random r, int[] NeuronCount)
         {
-            W = new Matrix[NeuronCount.Length - 1];
+            W = new FloatMatrix[NeuronCount.Length - 1];
             for (int i = 0; i < W.Length; i++)
             {
-                W[i] = Matrix.Random(NeuronCount[i] + 1, NeuronCount[i + 1], r) * 2 - 1;
+                W[i] = FloatMatrix.Random(NeuronCount[i] + 1, NeuronCount[i + 1], r) * 2 - 1;
             }
         }
-        public Matrix ForwardPropagation(Matrix InputValue)
+        public FloatMatrix ForwardPropagation(FloatMatrix InputValue)
         {
-            Matrix[] Z = new Matrix[LayerCount];
-            Matrix[] A = new Matrix[LayerCount];
+            FloatMatrix[] Z = new FloatMatrix[LayerCount];
+            FloatMatrix[] A = new FloatMatrix[LayerCount];
 
-            Z[0] = InputValue.AddColumn(Matrix.Ones(InputValue.x, 1));
+            Z[0] = InputValue.AddColumn(FloatMatrix.Ones(InputValue.x, 1));
             A[0] = Z[0];
 
             for (int i = 1; i < LayerCount; i++)
             {
-                Z[i] = (A[i - 1] * W[i - 1]).AddColumn(Matrix.Ones(InputValue.x, 1));
+                Z[i] = (A[i - 1] * W[i - 1]).AddColumn(FloatMatrix.Ones(InputValue.x, 1));
                 A[i] = Relu(Z[i]);
             }
             return Z[Z.Length - 1].Slice(0,1, Z[Z.Length - 1].x, Z[Z.Length - 1].y);
         }
 
-        static Matrix Relu(Matrix m)
+        static FloatMatrix Relu(FloatMatrix m)
         {
-            double[,] output = m;
-            Matrix.MatrixLoop((i, j) => {
-                output[i, j] = output[i, j] > 0 ? output[i, j] : 0;
+            float[,] output = new float[m.x, m.y];
+            FloatMatrix.MatrixLoop((i, j) => {
+                output[i, j] = m[i, j] > 0 ? m[i, j] : 0;
             }, m.x, m.y);
             return output;
         }
         /*
         static Matrix sigmoid(Matrix m)
         {
-            double[,] output = m;
+            float[,] output = m;
             Matrix.MatrixLoop((i, j) => {
                 output[i, j] = 1 / (1 + Math.Exp(-output[i, j]));
             }, m.x, m.y);
@@ -62,23 +62,23 @@ namespace Evolutionary_perceptron
     [Serializable]
     public struct Genoma
     {
-        public Matrix[] W;
+        public FloatMatrix[] W;
 
-        public Genoma(Matrix[] W)
+        public Genoma(FloatMatrix[] W)
         {
             this.W = W;
         }
 
         public static Genoma Cross(Random r, Genoma parent1, Genoma parent2)
         {
-            Matrix[] SonW = new Matrix[parent1.W.Length];
+            FloatMatrix[] SonW = new FloatMatrix[parent1.W.Length];
 
             for (int layer = 0; layer < parent1.W.Length; layer++)
             {
-                double[,] w = new double[parent1.W[layer].x, parent1.W[layer].y];
-                Matrix.MatrixLoop((i, j) => 
+                float[,] w = new float[parent1.W[layer].x, parent1.W[layer].y];
+                FloatMatrix.MatrixLoop((i, j) => 
                 {
-                    if (r.NextDouble() > 0.5)
+                    if ((float) r.NextDouble() > 0.5)
                     {
                         w[i, j] = parent1.W[layer].GetValue(i, j);
                     }
@@ -93,16 +93,16 @@ namespace Evolutionary_perceptron
             return new Genoma(SonW);
         }
         public static Genoma Mutate(Random r, Genoma gen, 
-            double mutationRate, double maxPerturbation)
+            float mutationRate, float maxPerturbation)
         {
             for (int layer = 0; layer < gen.W.Length; layer++)
             {
-                double[,] m = gen.W[layer];
-                Matrix.MatrixLoop((i, j) =>
+                float[,] m = gen.W[layer];
+                FloatMatrix.MatrixLoop((i, j) =>
                 {
-                    if (r.NextDouble() < mutationRate)
+                    if ((float)r.NextDouble() < mutationRate)
                     {
-                        m[i,j] += (r.NextDouble() * 2f - 1f) * maxPerturbation;
+                        m[i,j] += ((float)r.NextDouble() * 2f - 1f) * maxPerturbation;
                     }
                 }, gen.W[layer].x, gen.W[layer].y);
                 gen.W[layer] = m;

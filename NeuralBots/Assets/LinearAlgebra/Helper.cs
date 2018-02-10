@@ -8,7 +8,7 @@ namespace LinearAlgebra
 {
     public static class Helper
     {
-        public static bool SaveMatrix(Matrix m, string directory)
+        public static bool SaveMatrix(FloatMatrix m, string directory)
         {
             FileStream fs = new FileStream(directory, FileMode.Create);
             
@@ -28,13 +28,13 @@ namespace LinearAlgebra
             }
             return true;
         }
-        public static bool LoadMatrix(out Matrix m, string directory)
+        public static bool LoadMatrix(out FloatMatrix m, string directory)
         {
             FileStream fs = new FileStream(directory, FileMode.Open);
             try
             {
                 BinaryFormatter bf = new BinaryFormatter();
-                m = (double[,])bf.Deserialize(fs);
+                m = (float[,])bf.Deserialize(fs);
             }
             catch (SerializationException e)
             {
@@ -48,14 +48,14 @@ namespace LinearAlgebra
             }
             return true;
         }
-        public static bool SaveMatrix(Matrix[] m, string directory)
+        public static bool SaveMatrix(FloatMatrix[] m, string directory)
         {
             FileStream fs = new FileStream(directory, FileMode.Create);
             try
             {
                 BinaryFormatter bf = new BinaryFormatter();
 
-                double[][,] _m = new double[m.Length][,];
+                float[][,] _m = new float[m.Length][,];
                 for (int i = 0; i < m.Length; i++)
                 {
                     _m[i] = m[i].matrix;
@@ -74,7 +74,7 @@ namespace LinearAlgebra
             }
             return true;
         }
-        public static bool LoadMatrix(out Matrix[] m, string directory)
+        public static bool LoadMatrix(out FloatMatrix[] m, string directory)
         {
             try
             {
@@ -83,8 +83,8 @@ namespace LinearAlgebra
                 {
                     BinaryFormatter bf = new BinaryFormatter();
 
-                    double[][,] _m = (double[][,])bf.Deserialize(fs);
-                    m = new Matrix[_m.Length];
+                    float[][,] _m = (float[][,])bf.Deserialize(fs);
+                    m = new FloatMatrix[_m.Length];
 
                     for (int i = 0; i < _m.Length; i++)
                     {
@@ -165,9 +165,9 @@ namespace LinearAlgebra
                 }
             }
         }
-        public static string[][] MatrixToCsv(Matrix m)
+        public static string[][] MatrixToCsv(FloatMatrix m)
         {
-            double[,] _m = m;
+            float[,] _m = m;
             string[][] output = new string[m.x][];
             for (int i = 0; i < m.x; i++)
             {
@@ -179,15 +179,15 @@ namespace LinearAlgebra
             }
             return output;
         }
-        public static Matrix CsvToMatrix(string[][] data)
+        public static FloatMatrix CsvToMatrix(string[][] data)
         {
-            double[,] m = new double[data.Length, data[0].Length];
+            float[,] m = new float[data.Length, data[0].Length];
 
             for (int i = 0; i < data.Length; i++)
             {
                 for (int j = 0; j < data[i].Length; j++)
                 {
-                    if (!double.TryParse(data[i][j], out m[i, j]))
+                    if (!float.TryParse(data[i][j], out m[i, j]))
                         m[i, j] = 0;
                 }
             }

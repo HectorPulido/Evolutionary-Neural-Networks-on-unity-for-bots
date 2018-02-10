@@ -11,8 +11,8 @@ public class NeuralRacket : MonoBehaviour
     NeuralBot nb;
     Transform ball;
 
-    double[,] inputs;
-    double[,] outputs;
+    float[,] inputs;
+    float[,] outputs;
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class NeuralRacket : MonoBehaviour
         Vector2 dis = transform.position - ball.position;
 
         inputs = SensorsInfo();
-        inputs[0, sensors.Length] = dis.x;//new double[,] { { dis.x, dis.y, dis.z } };
+        inputs[0, sensors.Length] = dis.x;//new float[,] { { dis.x, dis.y, dis.z } };
         inputs[0, sensors.Length + 1] = dis.y;
 
         outputs = nb.SetInput(inputs);
@@ -43,9 +43,9 @@ public class NeuralRacket : MonoBehaviour
     public LayerMask mask;
 
     RaycastHit2D rh = new RaycastHit2D();
-    double[,] SensorsInfo()
+    float[,] SensorsInfo()
     {
-        double[,] Sensors = new double[1, sensors.Length + 2];
+        float[,] Sensors = new float[1, sensors.Length + 2];
         for (int i = 0; i < sensors.Length; i++)
         {
             rh = Physics2D.Raycast(sensors[i].position, sensors[i].up, maxDistance, mask);//(r, out rh, maxDistance);

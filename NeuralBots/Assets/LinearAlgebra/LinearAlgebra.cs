@@ -3,59 +3,88 @@
 namespace LinearAlgebra
 {
     [Serializable]
-    public struct Matrix
+    public struct FloatMatrix
     {
         public static string dec = "0.00";
 
-        double[,] _matrix;
-        public double[,] matrix { get { return (double[,])_matrix.Clone(); } set { _matrix = value; } } //MATRIX IS PRETTY EXPENSIVE
-        public int x { get { return _matrix.GetLength(0); } }
-        public int y { get { return _matrix.GetLength(1); } }
-        public Matrix T { get { return Transpose(this); } }
-        public Matrix size { get { return  (new double[,] { { x , y } } ); } }
-        public Matrix abs { get { return Abs(this); } }
-        public double average { get { return Average(this); } }
-        public double max { get { return Max(this); } }
-        public Matrix flat { get { return Flat(this); } }
-        public double this[int i, int j]
+        public float[] _matrix;
+        public float[,] matrix {
+            get {
+                float[,] m = new float[x, y];
+                int temp = 0;
+                for (int i = 0; i < x; i++)
+                {
+                    for (int j = 0; j < y; j++)
+                    {
+                        m[i, j] = _matrix[temp];
+                        temp++;
+                    }
+                }
+                return m;
+            }
+            set {
+                this = new FloatMatrix(value);
+            } }
+        public int x;
+        public int y;
+        public FloatMatrix T { get { return Transpose(this); } }
+        public FloatMatrix size { get { return  (new float[,] { { x , y } } ); } }
+        public FloatMatrix abs { get { return Abs(this); } }
+        public float average { get { return Average(this); } }
+        public float max { get { return Max(this); } }
+        public FloatMatrix flat { get { return Flat(this); } }
+        public float this[int i, int j]
         {
-            get { return _matrix[i, j]; }
-            set { _matrix[i, j] = value; }
+            get { return _matrix[i*x + j]; }
+            set { _matrix[i*x + j] = value; }
         }
 
         //constructor
-        public Matrix(int sizex, int sizey)
+        public FloatMatrix(int sizex, int sizey)
         {
-            _matrix = new double[sizex, sizey];
+            x = sizex;
+            y = sizey;
+            _matrix = new float[sizex * sizey];
         }
-        public Matrix(double[,] matrix)
+        public FloatMatrix(float[,] matrix)
         {
-            _matrix = matrix;
+            x = matrix.GetLength(0);
+            y = matrix.GetLength(1);
+            _matrix = new float[x * y];
+            int temp = 0;
+            for (int i = 0; i < x; i++)
+            {
+                for (int j = 0; j < y; j++)
+                {
+                    _matrix[temp] = matrix[i, j];
+                    temp++;
+                }
+            }            
         }
         //Setup
-        public static implicit operator Matrix(double[,] matrix)
+        public static implicit operator FloatMatrix(float[,] matrix)
         {
-            return new Matrix(matrix);
+            return new FloatMatrix(matrix);
         }
-        public static implicit operator double[,](Matrix matrix)
+        public static implicit operator float[,](FloatMatrix matrix)
         {
             return matrix.matrix;
         }
 
         //values
-        public void SetValue(int x, int y, double value)
+        public void SetValue(int x, int y, float value)
         {
             if (_matrix == null)
                 throw new ArgumentException("Matrix can not be null");
-            _matrix[x, y] = value;
+            _matrix[x * this.x + y] = value;
         }
-        public double GetValue(int x, int y)
+        public float GetValue(int x, int y)
         {
             if (_matrix == null)
                 throw new ArgumentException("Matrix can not be null");
-            return _matrix[x, y];
+            return _matrix[x * this.x + y];
         }
-        public Matrix Slice(int x1, int y1, int x2, int y2)
+        public FloatMatrix Slice(int x1, int y1, int x2, int y2)
         {
             if (_matrix == null)
                 throw new ArgumentException("Matrix can not be null");
@@ -63,54 +92,54 @@ namespace LinearAlgebra
             if (x1 > x2 || y1 > y2 || x1 < 0 || x2 < 0 || y1 < 0 || y2 < 0)
                 throw new ArgumentException("Dimensions are not valid");
 
-            double[,] slice = new double[x2 - x1, y2 - y1];
+            float[,] slice = new float[x2 - x1, y2 - y1];
 
             for (int i = x1; i < x2; i++)
             {
                 for (int j = y1; j < y2; j++)
                 {
-                    slice[i - x1, j - y1] = _matrix[i, j];
+                    slice[i - x1, j - y1] = matrix[i, j];
                 }
             }
             return  (slice);
         }
-        public Matrix Slice(int x, int y)
+        public FloatMatrix Slice(int x, int y)
         {
             return Slice(0,0,x,y);
         }
-        public Matrix GetRow(int x)
+        public FloatMatrix GetRow(int x)
         {
             if (_matrix == null)
                 throw new ArgumentException("Matrix can not be null");
 
-            double[,] row = new double[1, y];
+            float[,] row = new float[1, y];
             for (int j = 0; j < y; j++)
             {
-                row[0, j] = _matrix[x, j];
+                row[0, j] = matrix[x, j];
             }
             return  (row);
         }
-        public Matrix GetColumn(int y)
+        public FloatMatrix GetColumn(int y)
         {
             if (_matrix == null)
                 throw new ArgumentException("Matrix can not be null");
 
-            double[,] column = new double[x, 1];
+            float[,] column = new float[x, 1];
             for (int i = 0; i < x; i++)
             {
-                column[i, 0] = _matrix[i, y];
+                column[i, 0] = matrix[i, y];
             }
             return  (column);
         }
-        public Matrix AddColumn(Matrix m2)
+        public FloatMatrix AddColumn(FloatMatrix m2)
         {
             if (_matrix == null)
                 throw new ArgumentException("Matrix can not be null");
             if (m2.y != 1 || m2.x != x)
                 throw new ArgumentException("Invalid dimensions");
 
-            double[,] newMatrix = new double[x, y + 1];
-            double[,] m = _matrix;
+            float[,] newMatrix = new float[x, y + 1];
+            float[,] m = matrix;
 
             for (int i = 0; i < x; i++)
             {
@@ -122,15 +151,15 @@ namespace LinearAlgebra
             }, x, y);
             return  (newMatrix);
         }
-        public Matrix AddRow(Matrix m2)
+        public FloatMatrix AddRow(FloatMatrix m2)
         {
             if (_matrix == null)
                 throw new ArgumentException("Matrix can not be null");
             if (m2.x != 1 || m2.y != y)
                 throw new ArgumentException("Invalid dimensions");
 
-            double[,] newMatrix = new double[x + 1, y];
-            double[,] m = _matrix;
+            float[,] newMatrix = new float[x + 1, y];
+            float[,] m = matrix;
 
             for (int j = 0; j < y; j++)
             {
@@ -158,25 +187,25 @@ namespace LinearAlgebra
         }
 
         //PREMADES
-        public static Matrix Zeros(int x, int y)
+        public static FloatMatrix Zeros(int x, int y)
         {
-            double[,] zeros = new double[x, y];
+            float[,] zeros = new float[x, y];
             MatrixLoop((i, j) => {
                 zeros[i, j] = 0;
             }, x, y);
             return  (zeros);
         }
-        public static Matrix Ones(int x, int y)
+        public static FloatMatrix Ones(int x, int y)
         {
-            double[,] ones = new double[x, y];
+            float[,] ones = new float[x, y];
             MatrixLoop((i, j) => {
                 ones[i, j] = 1;
             }, x, y);
             return  (ones);
         }
-        public static Matrix Identy(int x)
+        public static FloatMatrix Identy(int x)
         {
-            double[,] identy = new double[x, x];
+            float[,] identy = new float[x, x];
             MatrixLoop((i, j) => {
                 if (i == j)
                     identy[i, j] = 1;
@@ -185,37 +214,37 @@ namespace LinearAlgebra
             }, x, x);
             return  (identy);
         }
-        public static Matrix Random(int x, int y, Random r)
+        public static FloatMatrix Random(int x, int y, Random r)
         {
-            double[,] random = new double[x, y];
+            float[,] random = new float[x, y];
             MatrixLoop((i, j) => {
-                random[i, j] = r.NextDouble();
+                random[i, j] = (float)r.NextDouble();
             }, x, y);
-            return  (random);
+            return random;
         }
         //Operations
         //Transpose
-        public static Matrix Transpose(Matrix m)
+        public static FloatMatrix Transpose(FloatMatrix m)
         {
-            double[,] mT = new double[m.y, m.x];
+            float[,] mT = new float[m.y, m.x];
             MatrixLoop((i, j) => {
                 mT[j, i] = m.GetValue(i,j);
             }, m.x, m.y);
             return  (mT);
         }
         //ADDITIONS
-        public static Matrix operator +(Matrix m1, Matrix m2)
+        public static FloatMatrix operator +(FloatMatrix m1, FloatMatrix m2)
         {
             return MatSum(m1, m2);
         }
-        public static Matrix operator +(Matrix m2, double m1)
+        public static FloatMatrix operator +(FloatMatrix m2, float m1)
         {
-            return MatdoubleSum(m1, m2);
+            return MatfloatSum(m1, m2);
         }
-        public static Matrix MatdoubleSum(double m1, Matrix m2)
+        public static FloatMatrix MatfloatSum(float m1, FloatMatrix m2)
         {
-            double[,] a = m2;
-            double[,] b = new double[m2.x, m2.y];
+            float[,] a = m2;
+            float[,] b = new float[m2.x, m2.y];
 
             MatrixLoop((i, j) => {
 
@@ -225,14 +254,14 @@ namespace LinearAlgebra
 
             return  (b);
         }
-        public static Matrix MatSum(Matrix m1, Matrix m2, bool neg = false)
+        public static FloatMatrix MatSum(FloatMatrix m1, FloatMatrix m2, bool neg = false)
         {
             if (m1.x != m2.x || m1.y != m2.y)
                 throw new ArgumentException("Matrix must have the same dimensions");
 
-            double[,] a = m1;
-            double[,] b = m2;
-            double[,] c = new double[m1.x,m2.y];
+            float[,] a = m1;
+            float[,] b = m2;
+            float[,] c = new float[m1.x,m2.y];
             MatrixLoop((i, j) => {
                 if(!neg)
                     c[i, j] = a[i, j] + b[i, j];
@@ -242,29 +271,29 @@ namespace LinearAlgebra
             return  (c);
         }
         //SUBSTRACTIONS
-        public static Matrix operator -(Matrix m1, Matrix m2)
+        public static FloatMatrix operator -(FloatMatrix m1, FloatMatrix m2)
         {
             return MatSum(m1, m2, true);
         }
-        public static Matrix operator -(Matrix m2, double m1)
+        public static FloatMatrix operator -(FloatMatrix m2, float m1)
         {
-            return MatdoubleSum(-m1, m2);
+            return MatfloatSum(-m1, m2);
         }
         //MULTIPLICATIONS
-        public static Matrix operator *(Matrix m2, double m1)
+        public static FloatMatrix operator *(FloatMatrix m2, float m1)
         {
-            return MatdoubleMult(m2, m1);
+            return MatfloatMult(m2, m1);
         }
-        public static Matrix operator *(Matrix m1, Matrix m2)
+        public static FloatMatrix operator *(FloatMatrix m1, FloatMatrix m2)
         {
             if (m1.x == m2.x && m1.y == m2.y)
                 return DeltaMult(m1,m2);
             return MatMult(m1, m2);
         }
-        public static Matrix MatdoubleMult(Matrix m2, double m1)
+        public static FloatMatrix MatfloatMult(FloatMatrix m2, float m1)
         {
-            double[,] a = m2;
-            double[,] b = new double[m2.x, m2.y];
+            float[,] a = m2;
+            float[,] b = new float[m2.x, m2.y];
 
             MatrixLoop((i, j) => {
 
@@ -274,7 +303,7 @@ namespace LinearAlgebra
 
             return  (b);
         }
-        public static Matrix MatMult(Matrix m1, Matrix m2)
+        public static FloatMatrix MatMult(FloatMatrix m1, FloatMatrix m2)
         {
             if (m1.y != m2.x)
                 throw new ArgumentException("Matrix must have compatible dimensions");
@@ -282,11 +311,11 @@ namespace LinearAlgebra
             int m = m1.y;
             int p = m2.y;
 
-            double[,] a = m1;
-            double[,] b = m2;
-            double[,] c = new double[n, p];
+            float[,] a = m1;
+            float[,] b = m2;
+            float[,] c = new float[n, p];
             MatrixLoop((i,j) => {
-                double sum = 0;
+                float sum = 0;
                 for (int k = 0; k < m; k++)
                 {
                     sum += a[i, k] * b[k, j];
@@ -296,11 +325,11 @@ namespace LinearAlgebra
             }, n, p);
             return  (c);
         }
-        public static Matrix DeltaMult(Matrix m1, Matrix m2)
+        public static FloatMatrix DeltaMult(FloatMatrix m1, FloatMatrix m2)
         {
             if(m1.x != m2.x || m1.y != m2.y)
                 throw new ArgumentException("Matrix must have the same dimensions");
-            double[,] output = new double[m1.x, m2.y];
+            float[,] output = new float[m1.x, m2.y];
             MatrixLoop((i, j) => 
             {
                 output[i, j] = m1.GetValue(i, j) * m2.GetValue(i, j);
@@ -308,37 +337,37 @@ namespace LinearAlgebra
             return  (output);
         }
         //DIVISION
-        public static Matrix operator / (Matrix m2, double m1)
+        public static FloatMatrix operator / (FloatMatrix m2, float m1)
         {
-            return MatdoubleMult(m2, 1 / m1);
+            return MatfloatMult(m2, 1 / m1);
         }
         //POW
-        public static Matrix operator ^(Matrix m2, double m1)
+        public static FloatMatrix operator ^(FloatMatrix m2, float m1)
         {
             return Pow(m2,m1);
         }
-        public static Matrix Pow (Matrix m2, double m1)
+        public static FloatMatrix Pow (FloatMatrix m2, float m1)
         {
-            double[,] output = new double[m2.x, m2.y];
+            float[,] output = new float[m2.x, m2.y];
             MatrixLoop((i, j) => {
-                output[i, j] = Math.Pow(m2.GetValue(i, j), m1); 
+                output[i, j] = (float)Math.Pow(m2.GetValue(i, j), m1); 
             }, m2.x, m2.y);
             return  (output);
         }
-        public Matrix Pow(double m1)
+        public FloatMatrix Pow(float m1)
         {
             return Pow(this, m1);
         }
         //Sumatory 
-        public static Matrix Sumatory(Matrix m, int dimension = -1)
+        public static FloatMatrix Sumatory(FloatMatrix m, int dimension = -1)
         {
-            double[,] output;
+            float[,] output;
             if (dimension == -1)
-                output = new double[1, 1];
+                output = new float[1, 1];
             else if (dimension == 0)
-                output = new double[m.x, 1];
+                output = new float[m.x, 1];
             else if (dimension == 1)
-                output = new double[1, m.y];
+                output = new float[1, m.y];
             else
                 throw new ArgumentException("The dimension must be -1, 0 or 1");
 
@@ -365,35 +394,35 @@ namespace LinearAlgebra
             }
             return  (output);
         }
-        public Matrix Sumatory(int dimension = -1)
+        public FloatMatrix Sumatory(int dimension = -1)
         {
             return Sumatory(this, dimension);
         }
         //DOT PRODUCT
-        public Matrix Dot(Matrix m2)
+        public FloatMatrix Dot(FloatMatrix m2)
         {
             return Dot(this, m2);
         }
-        public static Matrix Dot(Matrix m1, Matrix m2)
+        public static FloatMatrix Dot(FloatMatrix m1, FloatMatrix m2)
         {
             return m1 * m2.T;
         }
         //ABS
-        public Matrix Abs(Matrix m)
+        public FloatMatrix Abs(FloatMatrix m)
         {
-            double[,] d = m;
+            float[,] d = m;
             MatrixLoop((i, j) => { d[i, j] = Math.Abs(m.GetValue(i, j)); }, m.x, m.y);
             return  (d);
         }
-        public double Average(Matrix m)
+        public float Average(FloatMatrix m)
         {
-            double d = 0;
+            float d = 0;
             MatrixLoop((i, j) => { d += m.GetValue(i, j); }, m.x, m.y);
             return d / (m.x * m.y);
         }
-        public double Max(Matrix m)
+        public float Max(FloatMatrix m)
         {
-            double max = double.MinValue;
+            float max = float.MinValue;
             MatrixLoop((i, j) => 
             {
                 if (m.GetValue(i, j) > max)
@@ -403,9 +432,9 @@ namespace LinearAlgebra
         }
 
         //Flat
-        public Matrix Flat(Matrix m)
+        public FloatMatrix Flat(FloatMatrix m)
         {
-            double[,] output = new double[m.x * m.y, 1];
+            float[,] output = new float[m.x * m.y, 1];
 
             MatrixLoop((i, j) => 
             {

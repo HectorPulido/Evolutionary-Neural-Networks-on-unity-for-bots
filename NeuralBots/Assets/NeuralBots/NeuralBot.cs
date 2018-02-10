@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Evolutionary_perceptron;
 
 namespace Evolutionary_perceptron.NeuralBot
 {
-    using Evolutionary_perceptron.MendelMachine;
+    using MendelMachine;
 
     public enum PerceptronUpdate
     {
@@ -19,18 +18,28 @@ namespace Evolutionary_perceptron.NeuralBot
         [Header("BotData")]
         int _index;
         public int index { get { return _index; } }
-
-        [SerializeField]float _fitness;
+        [SerializeField]
+        bool on;
+        [SerializeField]
+        float _fitness;
         public float fitness { get { return _fitness; } }
-
-        [SerializeField]float _lifeTime;
-        [SerializeField]bool _learningPhase;
+        [SerializeField]
+        float _lifeTime;
+        [SerializeField]
+        bool _learningPhase;
+        [SerializeField]
         MendelMachine _mendelMachine;
+        [SerializeField]
         Perceptron _perceptron;
 
 
         public void AddFitness(float fitnessChange) { _fitness += fitnessChange; }
-        public double[,] SetInput(double[,] inputs) { return _perceptron.ForwardPropagation(inputs); }
+        public float[,] SetInput(float[,] inputs)
+        {
+            if (on)
+                return _perceptron.ForwardPropagation(inputs);
+            return null;
+        }
 
         public void Initialize(MendelMachine mendelMachine, Genoma genoma, 
             bool learningPhase, float lifeTime, int index)
@@ -41,6 +50,7 @@ namespace Evolutionary_perceptron.NeuralBot
             _perceptron = new Perceptron(genoma);
             _learningPhase = learningPhase;
             _lifeTime = lifeTime;
+            on = true;
         }
 
         bool fail = false;

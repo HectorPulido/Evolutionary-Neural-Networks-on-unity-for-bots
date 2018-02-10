@@ -18,8 +18,8 @@ public class NeuralCar : MonoBehaviour
         m_Car = GetComponent<UnityStandardAssets.Vehicles.Car.CarController>();
     }
 
-    double[,] inputs;
-    double[,] outputs;
+    float[,] inputs;
+    float[,] outputs;
 
     void Update ()
     {
@@ -32,9 +32,9 @@ public class NeuralCar : MonoBehaviour
     }
 
     Ray r;
-    double[,] SensorsInfo()
+    float[,] SensorsInfo()
     {
-        double[,] sensors = new double[1 , Sensors.Length];
+        float[,] sensors = new float[1 , Sensors.Length];
         for (int i = 0; i < Sensors.Length; i++)
         {
              r = new Ray(Sensors[i].position, Sensors[i].forward);
