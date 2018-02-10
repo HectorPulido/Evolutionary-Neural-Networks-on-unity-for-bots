@@ -78,11 +78,11 @@ namespace LinearAlgebra
                 throw new ArgumentException("Matrix can not be null");
             _matrix[x * this.x + y] = value;
         }
-        public float GetValue(int x, int y)
+        public float GetValue(int i, int j)
         {
             if (_matrix == null)
                 throw new ArgumentException("Matrix can not be null");
-            return _matrix[x * this.x + y];
+            return _matrix[i + this.x * j];
         }
         public FloatMatrix Slice(int x1, int y1, int x2, int y2)
         {

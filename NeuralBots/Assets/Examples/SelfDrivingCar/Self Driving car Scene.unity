@@ -1254,7 +1254,7 @@ MonoBehaviour:
   maxPerturbation: 1.5
   elitism: 2
   newIndividuals: 3
-  individualsPerGeneration: 15
+  individualsPerGeneration: 10
   prefab: {fileID: 114329179396950756, guid: 4985369d2f4a62347b8f99c0f58537f3, type: 2}
   generation: 0
   maxFitness: 0
