@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Examples/SelfDrivingCar/Self Driving car Scene.unity
+- path: Assets/Examples/Flappybird/Scenes/SampleScene.unity
   isLoaded: 1
   isActive: 1

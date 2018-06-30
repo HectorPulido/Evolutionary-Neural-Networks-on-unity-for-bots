@@ -73,8 +73,9 @@ namespace Evolutionary_perceptron.NeuralBot
         {
             if (!_learningPhase)
                 return;
+
             _lifeTime -= Time.deltaTime;
-            if (_lifeTime <= 0)
+            if (_lifeTime < 0)
                 Destroy();
         }
     }
