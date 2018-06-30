@@ -1,21 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Bottom : MonoBehaviour
+﻿using UnityEngine;
+namespace Evolutionary_perceptron.Examples.Arkanoid
 {
-    Scenario scenario;
-
-    void Start()
+    public class Bottom : MonoBehaviour
     {
-        scenario = transform.parent.parent.GetComponent<Scenario>();
-    }
+        Scenario scenario;
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Ball"))
+        void Start()
         {
-            ArkanoidMendelMachine.current.NeuralBotDestroyed(scenario.id);
+            scenario = transform.parent.parent.GetComponent<Scenario>();
+        }
+        void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.CompareTag("Ball"))
+            {
+                ArkanoidMendelMachine.current.NeuralBotDestroyed(scenario.id);
+            }
         }
     }
 }

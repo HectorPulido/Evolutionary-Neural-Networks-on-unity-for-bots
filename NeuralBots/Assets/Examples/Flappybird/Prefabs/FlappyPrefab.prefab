@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869656897821306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.342169, y: -2.5781019, z: 0}
+  m_LocalPosition: {x: 0.053699493, y: -0.36907768, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -105,11 +105,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   on: 0
-  _fitness: 0
-  _lifeTime: 0
-  _learningPhase: 0
-  _mendelMachine: {fileID: 0}
-  _perceptron:
+  fitness: 0
+  lifeTime: 0
+  learningPhase: 0
+  mendelMachine: {fileID: 0}
+  perceptron:
+    activationFunction: 0
     W: []
 --- !u!114 &114768611109239016
 MonoBehaviour:
@@ -162,7 +163,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.17, y: 0.12}
+  m_Size: {x: 3.41, y: 3.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

@@ -1,59 +1,54 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Evolutionary_perceptron.MendelMachine;
-using Evolutionary_perceptron.NeuralBot;
+﻿using UnityEngine;
+using System.Collections;
 
-public class FlappyMendelMachine : MendelMachine
+namespace Evolutionary_perceptron.Examples.FlappyBird
 {
-    [Header("FlappyStuff")]
-    public Transform startPoint;
-    public Obstacles[] obstacles;
+    using Evolutionary_perceptron.MendelMachine;
 
-    int index = 15;
-
-    protected override void Start()
+    public class FlappyMendelMachine : MendelMachine
     {
-        base.Start();
+        [Header("FlappyStuff")]
+        public Transform startPoint;
+        public Obstacles[] obstacles;
 
-        StartCoroutine(InstantiateBotCoroutine());
-    }
+        int index = 15;
 
-    public override void NeuralBotDestroyed(NeuralBot neuralBot)
-    {
-        base.NeuralBotDestroyed(neuralBot);
-
-        Destroy(neuralBot.gameObject);
-
-        index--;
-
-        if (index <= 0)
-        {            
-            Save();
-            population = Mendelization();
-            generation++;
-
+        protected override void Start()
+        {
+            base.Start();
             StartCoroutine(InstantiateBotCoroutine());
         }
-    }
-
-    // Update is called once per frame
-    IEnumerator InstantiateBotCoroutine()
-    {
-        yield return null;
-        index = individualsPerGeneration;
-
-        for (int i = 0; i < obstacles.Length; i++)
+        public override void NeuralBotDestroyed(NeuralBot neuralBot)
         {
-            obstacles[i].ReturnToStart();
-        }
+            base.NeuralBotDestroyed(neuralBot);
 
-        for (int i = 0; i < population.Length; i++)
+            Destroy(neuralBot.gameObject);
+
+            index--;
+
+            if (index <= 0)
+            {
+                Save();
+                population = Mendelization();
+                generation++;
+
+                StartCoroutine(InstantiateBotCoroutine());
+            }
+        }
+        IEnumerator InstantiateBotCoroutine()
         {
-            InstantiateBot(population[i], 999999, startPoint, i);
+            yield return null;
+            index = individualsPerGeneration;
+
+            for (int i = 0; i < obstacles.Length; i++)
+            {
+                obstacles[i].ReturnToStart();
+            }
+
+            for (int i = 0; i < population.Length; i++)
+            {
+                InstantiateBot(population[i], 999999, startPoint, i);
+            }
         }
-
-
-
     }
 }

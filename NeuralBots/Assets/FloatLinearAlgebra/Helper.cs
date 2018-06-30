@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-
-namespace LinearAlgebra
+﻿namespace LinearAlgebra
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime.Serialization;
+    using System.Runtime.Serialization.Formatters.Binary;
+
     public static class Helper
     {
         public static bool SaveMatrix(FloatMatrix m, string directory)
@@ -15,7 +15,7 @@ namespace LinearAlgebra
             try
             {
                 BinaryFormatter bf = new BinaryFormatter();
-                bf.Serialize(fs, m.matrix);
+                bf.Serialize(fs, m.Matrix);
             }
             catch (SerializationException e)
             {
@@ -58,7 +58,7 @@ namespace LinearAlgebra
                 float[][,] _m = new float[m.Length][,];
                 for (int i = 0; i < m.Length; i++)
                 {
-                    _m[i] = m[i].matrix;
+                    _m[i] = m[i].Matrix;
                 }
 
                 bf.Serialize(fs, _m);

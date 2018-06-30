@@ -1,99 +1,8 @@
-﻿using System.Collections;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine;
 using Evolutionary_perceptron;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-using System.Runtime.Serialization;
-
 namespace Evolutionary_perceptron.MendelMachine
-{
-    using Evolutionary_perceptron.NeuralBot;
-
-    [System.Serializable]
-    public struct Individual
-    {
-        public Genoma gen;
-        public float fitness;
-    }
-
-    public class Handler
-    {
-        public static Individual[] Load(string dataPath, bool useRelativeDataPath, bool debug)
-        {
-
-            Individual[] pop;
-
-            if (dataPath == "" || dataPath == null)
-                dataPath = useRelativeDataPath ? Application.dataPath + "/Data/data.bin" : "c://data.bin";
-            else
-                dataPath = (useRelativeDataPath ? Application.dataPath + "/Data" : "") + dataPath;
-
-            if (!File.Exists(dataPath))
-                return null;
-
-            using (FileStream fs = new FileStream(dataPath, FileMode.Open))
-            {
-                try
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    pop = (Individual[])formatter.Deserialize(fs);
-                }
-                catch (SerializationException e)
-                {
-                    if (debug)
-                        Debug.Log("Failed to deserialize. Reason: " + e.Message);
-                    return null;
-                }
-                finally
-                {
-                    fs.Close();
-                    if (debug)
-                        Debug.Log("Data loaded");
-                }
-            }             
-
-            return pop;
-
-        }
-
-        public static void Save(Individual[] ind, string dataPath, bool useRelativeDataPath, bool debug)
-        {
-            if (dataPath == "" || dataPath == null)
-                dataPath = useRelativeDataPath ? Application.dataPath + "/Data/data.bin" : "c://data.bin";
-            else
-                dataPath = (useRelativeDataPath ? Application.dataPath + "/Data" : "") + dataPath;
-
-
-            FileStream fs = new FileStream(dataPath, FileMode.Create);
-            BinaryFormatter formatter = new BinaryFormatter();
-            try
-            {
-                formatter.Serialize(fs, ind);
-            }
-            catch (SerializationException e)
-            {
-                if (debug)
-                    Debug.Log("Failed to serialize. Reason: " + e.Message);
-                throw;
-            }
-            finally
-            {
-                fs.Close();
-                if (debug)
-                    Debug.Log("Data saved");
-            }            
-        }
-    }
-
-    public enum DataManagement
-    {
-        Save,
-        Load,
-        SaveAndLoad,
-        Nothing
-    }
-
+{   
     public class MendelMachine : MonoBehaviour
     {
         [Header("Data storage")]
@@ -103,6 +12,7 @@ namespace Evolutionary_perceptron.MendelMachine
         public int numberOfGenerationsToSave;
 
         [Header("Neural networks data")]
+        public ActivationFunction activationFunction;
         public int[] neuronsPerLayer;
         public int seed;
 
@@ -121,8 +31,7 @@ namespace Evolutionary_perceptron.MendelMachine
         public bool learningPhase = true;
 
         protected Individual[] population;
-        protected System.Random r;
-        
+        protected System.Random r;        
         
 
         protected virtual void Start()
@@ -157,8 +66,7 @@ namespace Evolutionary_perceptron.MendelMachine
             NeuralBot nb = Instantiate(prefab,
                     placeToInstantiate.position,
                     placeToInstantiate.rotation);
-            //UnityEditor.Selection.activeGameObject = nb.gameObject;
-            nb.Initialize(this, individual.gen, learningPhase, lifeTime, index);
+            nb.Initialize(this, individual.gen, activationFunction, learningPhase, lifeTime, index);
 
             return nb;
         }
@@ -203,7 +111,6 @@ namespace Evolutionary_perceptron.MendelMachine
         protected virtual Individual[] Mendelization()
         {
             population = SortPopulation();
-
             maxFitness = population[0].fitness;
 
             if (debug)
@@ -216,14 +123,16 @@ namespace Evolutionary_perceptron.MendelMachine
 
         public virtual void NeuralBotDestroyed(NeuralBot neuralBot)
         {
-            population[neuralBot.index].fitness = neuralBot.fitness;
+            population[neuralBot.Index].fitness = neuralBot.Fitness;
         }
 
         protected Individual GenerateIndividual()
         {
-            Individual i = new Individual();
-            i.fitness = 0;
-            i.gen = (new Perceptron(r, neuronsPerLayer)).genoma;
+            Individual i = new Individual
+            {
+                fitness = 0,
+                gen = (new Perceptron(r, neuronsPerLayer, activationFunction)).GetGenoma
+            };
             return i;
         }
 
@@ -276,13 +185,15 @@ namespace Evolutionary_perceptron.MendelMachine
             }
             for (int i = 0; i < populationSize - newIndividuals - elitism; i++)
             {
-                Individual ind = new Individual();
-                ind.gen = Genoma.Cross(r,
+                Individual individual = new Individual
+                {
+                    gen = Genoma.Cross(r,
                     crosspop[Random.Range(0, crosspop.Count)].gen,
-                    crosspop[Random.Range(0, crosspop.Count)].gen);
-                ind.fitness = 0;
-                 
-                newpop.Add(ind);
+                    crosspop[Random.Range(0, crosspop.Count)].gen),
+                    fitness = 0
+                };
+
+                newpop.Add(individual);
             }
             return newpop.ToArray();
         }
@@ -295,11 +206,7 @@ namespace Evolutionary_perceptron.MendelMachine
                 population[i].gen = Genoma.Mutate(r, population[i].gen, mutationRate, maxPerturbation);
             }
             return population;
-        }
-
-        
-
+        }      
     }
-
 }
 

@@ -42,13 +42,12 @@ In this moments there are 3 examples
 ![Self driving car](/Images/SelfDriving%20car.jpg "Self driving car")
 
 This is the most complete example right now, it can be trained on just 10 generations, the sensors are Raycast and the actuator is the Unity Standard Asset Vehicle Car
-
 The fitnes function is, how many checkpoints it touch.
 
 ### Flappy bird bots
-![Flappy Bot](/Images/Flappy.gif "Arkanoid Bot")
+![Flappy Bot](/Images/flappy.gif "Arkanoid Bot")
 
-This is a flappy bird game bot made with this library
+This is a flappy bird game bot made with this library, the fitness function is the time, and the Die function is the collision with the tag "Obstacle" <br/> 
 Assets from <br/>
 https://opengameart.org/content/flappy-beans<br/>
 Asssets Licence: CC-BY 4.0

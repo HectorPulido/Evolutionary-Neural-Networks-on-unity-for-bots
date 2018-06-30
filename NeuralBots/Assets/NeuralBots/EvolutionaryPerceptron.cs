@@ -1,22 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using LinearAlgebra;
-
 namespace Evolutionary_perceptron
 {
+    public enum ActivationFunction
+    {
+        Relu, Sigmoid
+    }
+
     [Serializable]
     public struct Perceptron
     {
+        public ActivationFunction activationFunction;
         public FloatMatrix[] W;
         public int LayerCount { get { return W.Length + 1; } }
-        public Genoma genoma { get { return new Genoma(W); } }
+        public Genoma GetGenoma { get { return new Genoma(W); } }
 
-        public Perceptron(Genoma genoma)
+        public Perceptron(Genoma genoma, 
+            ActivationFunction activationFunction)
         {
+            this.activationFunction = activationFunction;
             W = genoma.W;
         }
-        public Perceptron(Random r, int[] NeuronCount)
+        public Perceptron(Random r, int[] NeuronCount, 
+            ActivationFunction activationFunction)
         {
+            this.activationFunction = activationFunction;
+
             W = new FloatMatrix[NeuronCount.Length - 1];
             for (int i = 0; i < W.Length; i++)
             {
@@ -34,7 +43,15 @@ namespace Evolutionary_perceptron
             for (int i = 1; i < LayerCount; i++)
             {
                 Z[i] = (A[i - 1] * W[i - 1]).AddColumn(FloatMatrix.Ones(InputValue.x, 1));
-                A[i] = Relu(Z[i]);
+
+                if (activationFunction == ActivationFunction.Relu)
+                {
+                    A[i] = Relu(Z[i]);
+                }
+                else if (activationFunction == ActivationFunction.Sigmoid)
+                {
+                    A[i] = Sigmoid(Z[i]);
+                }                
             }
             return Z[Z.Length - 1].Slice(0,1, Z[Z.Length - 1].x, Z[Z.Length - 1].y);
         }
@@ -47,16 +64,16 @@ namespace Evolutionary_perceptron
             }, m.x, m.y);
             return output;
         }
-        /*
-        static Matrix sigmoid(Matrix m)
+        
+        static FloatMatrix Sigmoid(FloatMatrix m)
         {
             float[,] output = m;
-            Matrix.MatrixLoop((i, j) => {
-                output[i, j] = 1 / (1 + Math.Exp(-output[i, j]));
+            FloatMatrix.MatrixLoop((i, j) => {
+                output[i, j] = 1 / (1 + UnityEngine.Mathf.Exp(-output[i, j]));
             }, m.x, m.y);
             return output;
         }
-        */
+        
     }
 
     [Serializable]

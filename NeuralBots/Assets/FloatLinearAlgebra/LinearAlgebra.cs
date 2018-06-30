@@ -1,14 +1,14 @@
-﻿using System;
-
-namespace LinearAlgebra
+﻿namespace LinearAlgebra
 {
+    using System;
+
     [Serializable]
     public struct FloatMatrix
     {
         public static string dec = "0.00";
 
         public float[] _matrix;
-        public float[,] matrix {
+        public float[,] Matrix {
             get {
                 float[,] m = new float[x, y];
                 int temp = 0;
@@ -28,11 +28,11 @@ namespace LinearAlgebra
         public int x;
         public int y;
         public FloatMatrix T { get { return Transpose(this); } }
-        public FloatMatrix size { get { return  (new float[,] { { x , y } } ); } }
-        public FloatMatrix abs { get { return Abs(this); } }
-        public float average { get { return Average(this); } }
-        public float max { get { return Max(this); } }
-        public FloatMatrix flat { get { return Flat(this); } }
+        public FloatMatrix Size { get { return  (new float[,] { { x , y } } ); } }
+        public FloatMatrix Abs { get { return GetAbs(this); } }
+        public float Average { get { return GetAverage(this); } }
+        public float Max { get { return GetMax(this); } }
+        public FloatMatrix Flat { get { return GetFlat(this); } }
         public float this[int i, int j]
         {
             get { return _matrix[i*x + j]; }
@@ -68,7 +68,7 @@ namespace LinearAlgebra
         }
         public static implicit operator float[,](FloatMatrix matrix)
         {
-            return matrix.matrix;
+            return matrix.Matrix;
         }
 
         //values
@@ -98,7 +98,7 @@ namespace LinearAlgebra
             {
                 for (int j = y1; j < y2; j++)
                 {
-                    slice[i - x1, j - y1] = matrix[i, j];
+                    slice[i - x1, j - y1] = Matrix[i, j];
                 }
             }
             return  (slice);
@@ -115,7 +115,7 @@ namespace LinearAlgebra
             float[,] row = new float[1, y];
             for (int j = 0; j < y; j++)
             {
-                row[0, j] = matrix[x, j];
+                row[0, j] = Matrix[x, j];
             }
             return  (row);
         }
@@ -127,7 +127,7 @@ namespace LinearAlgebra
             float[,] column = new float[x, 1];
             for (int i = 0; i < x; i++)
             {
-                column[i, 0] = matrix[i, y];
+                column[i, 0] = Matrix[i, y];
             }
             return  (column);
         }
@@ -139,7 +139,7 @@ namespace LinearAlgebra
                 throw new ArgumentException("Invalid dimensions");
 
             float[,] newMatrix = new float[x, y + 1];
-            float[,] m = matrix;
+            float[,] m = Matrix;
 
             for (int i = 0; i < x; i++)
             {
@@ -159,7 +159,7 @@ namespace LinearAlgebra
                 throw new ArgumentException("Invalid dimensions");
 
             float[,] newMatrix = new float[x + 1, y];
-            float[,] m = matrix;
+            float[,] m = Matrix;
 
             for (int j = 0; j < y; j++)
             {
@@ -179,7 +179,7 @@ namespace LinearAlgebra
             {
                 for (int j = 0; j < y; j++)
                 {
-                    c += matrix[i, j].ToString(dec) + " ";
+                    c += Matrix[i, j].ToString(dec) + " ";
                 }
                 c += "\n";
             }
@@ -408,19 +408,19 @@ namespace LinearAlgebra
             return m1 * m2.T;
         }
         //ABS
-        public FloatMatrix Abs(FloatMatrix m)
+        public FloatMatrix GetAbs(FloatMatrix m)
         {
             float[,] d = m;
             MatrixLoop((i, j) => { d[i, j] = Math.Abs(m.GetValue(i, j)); }, m.x, m.y);
             return  (d);
         }
-        public float Average(FloatMatrix m)
+        public float GetAverage(FloatMatrix m)
         {
             float d = 0;
             MatrixLoop((i, j) => { d += m.GetValue(i, j); }, m.x, m.y);
             return d / (m.x * m.y);
         }
-        public float Max(FloatMatrix m)
+        public float GetMax(FloatMatrix m)
         {
             float max = float.MinValue;
             MatrixLoop((i, j) => 
@@ -432,7 +432,7 @@ namespace LinearAlgebra
         }
 
         //Flat
-        public FloatMatrix Flat(FloatMatrix m)
+        public FloatMatrix GetFlat(FloatMatrix m)
         {
             float[,] output = new float[m.x * m.y, 1];
 

@@ -1,71 +1,71 @@
-﻿using Evolutionary_perceptron.NeuralBot;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[RequireComponent(typeof(Rigidbody2D))]
-public class NeuralRacket : MonoBehaviour
+﻿using UnityEngine;
+namespace Evolutionary_perceptron.Examples.Arkanoid
 {
-    Rigidbody2D rb;
-    public float Velocity;
-    NeuralBot nb;
-    Transform ball;
-
-    float[,] inputs;
-    float[,] outputs;
-
-    void Start()
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class NeuralRacket : BotHandler
     {
-        ball = GameObject.FindObjectOfType<Ball>().transform;
-        nb = GetComponent<NeuralBot>();
-        rb = GetComponent<Rigidbody2D>();
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
-        rb.gravityScale = 0;
-    }
+        public float Velocity;
 
-    void FixedUpdate()
-    {
-        nb.AddFitness(Time.fixedDeltaTime);
+        Rigidbody2D rb;
+        Transform ball;
 
-        Vector2 dis = transform.position - ball.position;
+        float[,] inputs;
+        float[,] outputs;
 
-        inputs = SensorsInfo();
-        inputs[0, sensors.Length] = dis.x;//new float[,] { { dis.x, dis.y, dis.z } };
-        inputs[0, sensors.Length + 1] = dis.y;
-
-        outputs = nb.SetInput(inputs);
-
-        rb.velocity = new Vector3(Mathf.Clamp((float)outputs[0, 0], -Velocity, Velocity), 0);	
-	}
-
-    public Transform[] sensors;
-    public float maxDistance = 100f;
-    public LayerMask mask;
-
-    RaycastHit2D rh = new RaycastHit2D();
-    float[,] SensorsInfo()
-    {
-        float[,] Sensors = new float[1, sensors.Length + 2];
-        for (int i = 0; i < sensors.Length; i++)
+        protected override void Start()
         {
-            rh = Physics2D.Raycast(sensors[i].position, sensors[i].up, maxDistance, mask);//(r, out rh, maxDistance);
-            if (rh.collider == null)
-                Sensors[0, i] = maxDistance;
-            else
-                Sensors[0, i] = rh.distance;
+            base.Start();
 
-            Debug.DrawRay(sensors[i].position, sensors[i].up * (float)Sensors[0, i], Color.green, 0.01f);
-
+            ball = FindObjectOfType<Ball>().transform;
+            rb = GetComponent<Rigidbody2D>();
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+            rb.gravityScale = 0;
         }
-        return Sensors;
-    }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Ball"))
+        void FixedUpdate()
         {
-            col.SendMessage("SetVelocity", new Vector2(rb.velocity.x, 5));
-        }
-    }
+            nb.AddFitness(Time.fixedDeltaTime);
 
+            Vector2 dis = transform.position - ball.position;
+
+            inputs = SensorsInfo();
+            inputs[0, sensors.Length] = dis.x;
+            inputs[0, sensors.Length + 1] = dis.y;
+
+            outputs = nb.SetInput(inputs);
+
+            rb.velocity = new Vector3(Mathf.Clamp((float)outputs[0, 0], -Velocity, Velocity), 0);
+        }
+
+        public Transform[] sensors;
+        public float maxDistance = 100f;
+        public LayerMask mask;
+
+        RaycastHit2D rh = new RaycastHit2D();
+        float[,] SensorsInfo()
+        {
+            float[,] Sensors = new float[1, sensors.Length + 2];
+            for (int i = 0; i < sensors.Length; i++)
+            {
+                rh = Physics2D.Raycast(sensors[i].position, sensors[i].up, maxDistance, mask);//(r, out rh, maxDistance);
+                if (rh.collider == null)
+                    Sensors[0, i] = maxDistance;
+                else
+                    Sensors[0, i] = rh.distance;
+
+                Debug.DrawRay(sensors[i].position, sensors[i].up * (float)Sensors[0, i], Color.green, 0.01f);
+
+            }
+            return Sensors;
+        }
+
+        void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.CompareTag("Ball"))
+            {
+                col.SendMessage("SetVelocity", new Vector2(rb.velocity.x, 5));
+            }
+        }
+
+    }
 }

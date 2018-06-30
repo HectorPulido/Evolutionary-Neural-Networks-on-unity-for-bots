@@ -185,10 +185,10 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0.24, z: 0, w: 0.34}
+    border: {x: 0, y: 0.24, z: 0, w: 0.32999998}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.49, y: 3.28}
-    newSize: {x: 0.26, y: 3.95}
+    newSize: {x: 0.2, y: 3.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 1
@@ -236,7 +236,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 1
   m_DrawMode: 2
-  m_Size: {x: 0.26, y: 3.95}
+  m_Size: {x: 0.2, y: 3.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
@@ -268,17 +268,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478905a4a4861d2468d104bea9d72576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataManagment: 3
+  dataManagment: 2
   useRelativeDataPath: 1
-  dataPath: 
-  numberOfGenerationsToSave: 0
-  neuronsPerLayer: 050000000a0000000a00000001000000
+  dataPath: Flappy
+  numberOfGenerationsToSave: 10
+  activationFunction: 0
+  neuronsPerLayer: 05000000140000001400000001000000
   seed: 999
-  mutationRate: 0.1
+  mutationRate: 0.3
   maxPerturbation: 0.3
   elitism: 4
-  newIndividuals: 4
-  individualsPerGeneration: 50
+  newIndividuals: 5
+  individualsPerGeneration: 100
   prefab: {fileID: 114502509017192762, guid: 84086d682cb98f34a88b401e64cf4113, type: 2}
   generation: 0
   maxFitness: 0
@@ -459,8 +460,8 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 0.26, y: 3.95}
-  m_AdaptiveModeThreshold: 0.5
+  m_Size: {x: 0.2, y: 3.96}
+  m_AdaptiveModeThreshold: 0.554
   m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
@@ -478,11 +479,11 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0.24, z: 0, w: 0.34}
+    border: {x: 0, y: 0.24, z: 0, w: 0.32999998}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.49, y: 3.28}
-    newSize: {x: 0.26, y: 3.95}
-    adaptiveTilingThreshold: 0.5
+    newSize: {x: 0.2, y: 3.96}
+    adaptiveTilingThreshold: 0.554
     drawMode: 2
     adaptiveTiling: 1
   m_AutoTiling: 0
@@ -587,8 +588,8 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 1
   m_DrawMode: 2
-  m_Size: {x: 0.26, y: 3.95}
-  m_AdaptiveModeThreshold: 0.5
+  m_Size: {x: 0.2, y: 3.96}
+  m_AdaptiveModeThreshold: 0.554
   m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
@@ -606,11 +607,11 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0.24, z: 0, w: 0.34}
+    border: {x: 0, y: 0.24, z: 0, w: 0.32999998}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.49, y: 3.28}
-    newSize: {x: 0.26, y: 3.95}
-    adaptiveTilingThreshold: 0.5
+    newSize: {x: 0.2, y: 3.96}
+    adaptiveTilingThreshold: 0.554
     drawMode: 2
     adaptiveTiling: 1
   m_AutoTiling: 0
@@ -661,10 +662,10 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0.24, z: 0, w: 0.34}
+    border: {x: 0, y: 0.24, z: 0, w: 0.32999998}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.49, y: 3.28}
-    newSize: {x: 0.26, y: 3.95}
+    newSize: {x: 0.2, y: 3.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 1
@@ -712,7 +713,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 0.26, y: 3.95}
+  m_Size: {x: 0.2, y: 3.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
@@ -761,10 +762,10 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0.24, z: 0, w: 0.34}
+    border: {x: 0, y: 0.24, z: 0, w: 0.32999998}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.49, y: 3.28}
-    newSize: {x: 0.26, y: 3.95}
+    newSize: {x: 0.2, y: 3.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 1
@@ -812,7 +813,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 1
   m_DrawMode: 2
-  m_Size: {x: 0.26, y: 3.95}
+  m_Size: {x: 0.2, y: 3.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
@@ -916,11 +917,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83a5679572cfc94895d8595a1a8ea9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3.5
   yRange: {x: 5, y: -1.3}
-  jumpPostion: 18
+  jumpPostion: 15
   center: {fileID: 1215971246}
-  startPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &1386367316
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,7 +969,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1386367316}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.008927725, y: 0.40039852, z: 0}
+  m_LocalPosition: {x: 0.008927725, y: 1.64, z: 0}
   m_LocalScale: {x: 0.24248345, y: 0.24036244, z: 0.22824441}
   m_Children: []
   m_Father: {fileID: 2006651800}
@@ -1002,11 +1002,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83a5679572cfc94895d8595a1a8ea9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3.5
   yRange: {x: 5, y: -1.3}
-  jumpPostion: 18
+  jumpPostion: 15
   center: {fileID: 87728617}
-  startPoint: {x: 0, y: 0, z: 0}
 --- !u!4 &1387155497
 Transform:
   m_ObjectHideFlags: 0
@@ -1046,7 +1045,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1773243612}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03782742, y: -1.0301933, z: 0}
+  m_LocalPosition: {x: -0.03782742, y: -2.42, z: 0}
   m_LocalScale: {x: 0.88330716, y: 0.49752685, z: 0.22824441}
   m_Children: []
   m_Father: {fileID: 2006651800}
@@ -1104,11 +1103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83a5679572cfc94895d8595a1a8ea9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3.5
   yRange: {x: 5, y: -1.3}
-  jumpPostion: 18
+  jumpPostion: 15
   center: {fileID: 1256292907}
-  startPoint: {x: 0, y: 0, z: 0}
 --- !u!4 &1822823646
 Transform:
   m_ObjectHideFlags: 0
@@ -1169,10 +1167,10 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0.24, z: 0, w: 0.34}
+    border: {x: 0, y: 0.24, z: 0, w: 0.32999998}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.49, y: 3.28}
-    newSize: {x: 0.26, y: 3.95}
+    newSize: {x: 0.2, y: 3.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 1
@@ -1220,7 +1218,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 0.26, y: 3.95}
+  m_Size: {x: 0.2, y: 3.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
@@ -1281,7 +1279,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.6, y: 2.56}
+  m_Size: {x: 2.9, y: 5.15}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

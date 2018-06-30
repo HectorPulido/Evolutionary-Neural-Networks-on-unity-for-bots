@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Examples/Flappybird/Scenes/SampleScene.unity
+- path: Assets/Examples/Arkanoid/Scenes/Arkanoid.unity
   isLoaded: 1
   isActive: 1

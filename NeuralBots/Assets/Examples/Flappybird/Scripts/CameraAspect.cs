@@ -1,24 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class CameraAspect : MonoBehaviour
+﻿using UnityEngine;
+namespace Evolutionary_perceptron.Util
 {
-
-    public float aspect;
-    Camera c;
-
-    void Awake()
+    public class CameraAspect : MonoBehaviour
     {
-        c = GetComponent<Camera>();
+        public float aspect;
 
-        var variance = aspect / Camera.main.aspect;
-        if (variance < 1.0f)
-            Camera.main.rect = new Rect((1.0f - variance) / 2.0f, 0, variance, 1.0f);
-        else
+        void Start()
         {
-            variance = 1.0f / variance;
-            Camera.main.rect = new Rect(0, (1.0f - variance) / 2.0f, 1.0f, variance);
+            var variance = aspect / Camera.main.aspect;
+            if (variance < 1.0f)
+                Camera.main.rect = new Rect((1.0f - variance) / 2.0f, 0, variance, 1.0f);
+            else
+            {
+                variance = 1.0f / variance;
+                Camera.main.rect = new Rect(0, (1.0f - variance) / 2.0f, 1.0f, variance);
+            }
         }
     }
 }

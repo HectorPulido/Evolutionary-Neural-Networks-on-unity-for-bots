@@ -1,26 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Block : MonoBehaviour {
-    Scenario scenario;
-
-    void Start()
+﻿using UnityEngine;
+namespace Evolutionary_perceptron.Examples.Arkanoid
+{
+    public class Block : MonoBehaviour
     {
-        scenario = transform.parent.parent.GetComponent<Scenario>();
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Ball"))
+        void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.GetComponent<Ball>().inv)
+            if (col.CompareTag("Ball"))
             {
-                ArkanoidMendelMachine.current.AddFitness(scenario.id);
-                Destroy(gameObject);
-            }
-            col.SendMessage("InverRbVelocityY");
+                if (col.GetComponent<Ball>().inv)
+                {
+                    Destroy(gameObject);
+                }
+                col.SendMessage("InverRbVelocityY");
 
+            }
         }
     }
 }
