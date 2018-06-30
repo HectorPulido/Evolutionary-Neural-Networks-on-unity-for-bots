@@ -17,7 +17,13 @@ Here the Genetic algorithm can help us, just crossover a lot of neural networks 
 
 
 ## WHY (MOTIVATION)
-I wanted to sell this asset on the store, but Unity ML attacked and I couldn't, so I release it, It's a pretty good and simple experiment, to learn neural networks without backpropagation.
+I wanted to sell this asset on the store, but Unity ML attacked and I couldn't, so I release it, It's a pretty good and simple experiment, to learn neural networks without backpropagation. <br/>
+So this was made for my youtube, and twitch channels 
+[![Banner](http://img.youtube.com/vi/ckSKdjosxc8/0.jpg)](http://www.youtube.com/watch?v=ckSKdjosxc8)
+Youtube channel <br/>
+https://www.youtube.com/c/HectorAndresPulidoPalmar <br/>
+Twitch Channel<br/>
+https://www.twitch.tv/hector_pulido_<br/>
 
 ## HOW TO USE
 Open it on unity 2018 or greater (sorry about that >-< ), you can make your own envoriment and set the fitness function, but I recomend, to look at the examples.
@@ -43,6 +49,9 @@ The fitnes function is, how many checkpoints it touch.
 ![Flappy Bot](/Images/Flappy.gif "Arkanoid Bot")
 
 This is a flappy bird game bot made with this library
+Assets from <br/>
+https://opengameart.org/content/flappy-beans<br/>
+Asssets Licence: CC-BY 4.0
 
 ### Arkanoid Bot
 ![Arkanoid Bot](/Images/Arkanoid.jpg?raw=true "Arkanoid Bot")
