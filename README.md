@@ -18,7 +18,7 @@ Here the Genetic algorithm can help us, just crossover a lot of neural networks 
 
 ## WHY (MOTIVATION)
 I wanted to sell this asset on the store, but Unity ML attacked and I couldn't, so I release it, It's a pretty good and simple experiment, to learn neural networks without backpropagation. <br/>
-So this was made for my youtube, and twitch channels 
+So this was made for my youtube, and twitch channels <br/>
 [![Banner](http://img.youtube.com/vi/ckSKdjosxc8/0.jpg)](http://www.youtube.com/watch?v=ckSKdjosxc8)
 Youtube channel <br/>
 https://www.youtube.com/c/HectorAndresPulidoPalmar <br/>
