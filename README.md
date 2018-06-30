@@ -45,7 +45,7 @@ This is the most complete example right now, it can be trained on just 10 genera
 The fitnes function is, how many checkpoints it touch.
 
 ### Flappy bird bots
-![Flappy Bot](/Images/flappy.gif "Arkanoid Bot")
+![Flappy Bot](/Images/Flappy.gif "Arkanoid Bot")
 
 This is a flappy bird game bot made with this library, the fitness function is the time, and the Die function is the collision with the tag "Obstacle" <br/> 
 Assets from <br/>
