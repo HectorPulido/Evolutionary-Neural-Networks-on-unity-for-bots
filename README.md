@@ -50,7 +50,15 @@ The fitnes function is, how many checkpoints it touch.
 This is a flappy bird game bot made with this library, the fitness function is the time, and the Die function is the collision with the tag "Obstacle" <br/> 
 Assets from <br/>
 https://opengameart.org/content/flappy-beans<br/>
-Asssets Licence: CC-BY 4.0
+Assets Licence: CC-BY 4.0
+
+### Survival bot
+![Survival Bot](/Images/Survival.gif "Survival Bot")
+This is an implementation of the algorithm in the [Survival shooter project from Unity Tec. ](https://www.assetstore.unity3d.com/en/#!/content/40756) <br/>
+the fitness function is how many damage can make in the lifetime of the generation. <br/>
+<b>The project is not in this here, it's in other repository<b/>
+https://github.com/HectorPulido/Evolutionary-Neural-Bots-On-Survival-Shooter <br/>
+Assets Licence: Apache 2.0
 
 ### Arkanoid Bot
 ![Arkanoid Bot](/Images/Arkanoid.jpg?raw=true "Arkanoid Bot")
