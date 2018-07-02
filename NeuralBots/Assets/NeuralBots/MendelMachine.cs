@@ -10,6 +10,7 @@ namespace Evolutionary_perceptron.MendelMachine
         public bool useRelativeDataPath = true;
         public string dataPath;
         public int numberOfGenerationsToSave;
+        public bool force;
 
         [Header("Neural networks data")]
         public ActivationFunction activationFunction;
@@ -29,6 +30,7 @@ namespace Evolutionary_perceptron.MendelMachine
         public float maxFitness;
         public bool debug = true;
         public bool learningPhase = true;
+        [Header("Custom")]
 
         protected Individual[] population;
         protected System.Random r;        
@@ -73,6 +75,12 @@ namespace Evolutionary_perceptron.MendelMachine
 
         protected virtual void Save()
         {
+            if (force)
+            {
+                Handler.Save(population, dataPath, useRelativeDataPath, debug);
+                return;
+            }
+
             if (dataManagment != DataManagement.Save && dataManagment != DataManagement.SaveAndLoad)
             {
                 if (debug)
@@ -112,9 +120,19 @@ namespace Evolutionary_perceptron.MendelMachine
         {
             population = SortPopulation();
             maxFitness = population[0].fitness;
-
+            
             if (debug)
-                Debug.Log("Max fitness of generation " + generation +",is: " + maxFitness);
+            {
+                var avg = 0f;
+                var c = "Max fitness of generation " + generation + ",is: " + maxFitness;
+                for (int i = 1; i < population.Length; i++)
+                {
+                    avg += population[i].fitness;
+                    c += "\nIndividual :"+ (i+1) +" " + population[i].fitness.ToString();
+                }
+                c = "Fitness average is :" + (avg / population.Length).ToString() + "\n" + c;
+                Debug.Log(c);
+            }
 
             population = CrossPopulation();
             population = MutatePopulation();

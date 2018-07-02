@@ -26,7 +26,7 @@ Twitch Channel<br/>
 https://www.twitch.tv/hector_pulido_<br/>
 
 ## HOW TO USE
-Open it on unity 2018 or greater (sorry about that >-< ), you can make your own envoriment and set the fitness function, but I recomend, to look at the examples.
+Open it on unity 2018 or greater (sorry about that >-< ), is also recomended to set the scripting runtime version in .Net 4.X, you can make your own envoriment and set the fitness function, but I recomend, to look at the examples.
 
 ### To create a Envoriment...
 You need two things a mendel machine (a trainer if you like the concept), to use it you need to iherit from the class mendel machine and set up, things like the startpoints or the behaviour when the generation is over.
@@ -37,15 +37,15 @@ And you also need a interpreter of the neural bot class this class will act like
 You can save your trainded bot as prefab, make sure you set as false the debug option on the neural bot component. Now you have a full trained bot ready to be proved.
 
 ## EXAMPLES
-In this moments there are 3 examples 
+In this moments there are 4 examples 
 ### Self driving car
-![Self driving car](/Images/SelfDriving%20car.jpg "Self driving car")
+![Self driving car](/Images/SelfDriving%20car.jpg "Self driving car")<br/>
 
 This is the most complete example right now, it can be trained on just 10 generations, the sensors are Raycast and the actuator is the Unity Standard Asset Vehicle Car
 The fitnes function is, how many checkpoints it touch.
 
 ### Flappy bird bots
-![Flappy Bot](/Images/Flappy.gif "Arkanoid Bot")
+![Flappy Bot](/Images/Flappy.gif "Arkanoid Bot") <br/>
 
 This is a flappy bird game bot made with this library, the fitness function is the time, and the Die function is the collision with the tag "Obstacle" <br/> 
 Assets from <br/>
@@ -53,15 +53,19 @@ https://opengameart.org/content/flappy-beans<br/>
 Assets Licence: CC-BY 4.0
 
 ### Survival bot
-![Survival Bot](/Images/Survival.gif "Survival Bot")
+![Survival Bot](/Images/Survival.gif "Survival Bot")<br/>
 This is an implementation of the algorithm in the [Survival shooter project from Unity Tec. ](https://www.assetstore.unity3d.com/en/#!/content/40756) <br/>
-the fitness function is how many damage can make in the lifetime of the generation. <br/>
+#### Fitness function
+A useful shoot give 2 points<br/>
+A fail shoot give -5 points <br/>
+When the bot move a lot give 1 point <br/>
+When health is lost give -1 points <br/>
 <b>The project is not in this here, it's in other repository<b/>
 https://github.com/HectorPulido/Evolutionary-Neural-Bots-On-Survival-Shooter <br/>
 Assets Licence: Apache 2.0
 
 ### Arkanoid Bot
-![Arkanoid Bot](/Images/Arkanoid.jpg?raw=true "Arkanoid Bot")
+![Arkanoid Bot](/Images/Arkanoid.jpg?raw=true "Arkanoid Bot")<br/>
 
 This is a bot that can play Arkanoid, but is not finished yet, I don't really know what the fitness function must be
 
