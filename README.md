@@ -31,10 +31,70 @@ Open it on unity 2018 or greater (sorry about that >-< ), is also recomended to 
 ### To create a Envoriment...
 You need two things a mendel machine (a trainer if you like the concept), to use it you need to iherit from the class mendel machine and set up, things like the startpoints or the behaviour when the generation is over.
 
+```csharp
+using Evolutionary_perceptron.MendelMachine;
+
+public class MyEnvorimentMendelMachine : MendelMachine
+{
+	//Init all variables
+	protected override void Start()
+        {
+            base.Start(); 
+            StartCoroutine(InstantiateBotCoroutine());
+        }	
+	//When a bot die
+	public override void NeuralBotDestroyed(NeuralBot neuralBot)
+        {
+            //Doo some cool stuff, read the examples
+        }
+	//You can instantiate one, two, what you want
+	IEnumerator InstantiateBotCoroutine()
+        {
+            //Instantiate bots
+        }
+}
+```
+
 And you also need a interpreter of the neural bot class this class will act like a Senses and Actuators from the body (the individual), I recomend that the sensors where raycast (o raycast2D) or any lineal information, this class also can change the fitness of the neuralbot.
 
+```csharp
+public class NeuralExample : BotHandler
+{
+	MyControllerClass cs;
+	//Init all variables
+	protected override void Start()
+        {
+           	base.Start();
+            	cs = GetComponent<MyControllerClass>();
+        }	
+	void Update()
+        {
+		var i = new float[1, 5] { { n1, n2, n3, n4, n5 } }; // Sensor info
+            	var output = nb.SetInput(i); //Feed forward
+		
+		cs.speed = output[0, 0]; // Linear something
+
+            	if (output[0, 1] > 0.5f) // Trigger something
+            	{
+                	cs.jumpRequest = true;
+            	}
+		nb.AddFitness(Time.deltaTime); // You can reward the lifetime
+        }
+
+	private void OnTriggerEnter2D(Collider2D collision)
+        {
+		//Example of destroy
+            	if (collision.CompareTag("Obstacle"))
+            	{
+                	nb.Destroy();
+            	}
+        }
+
+}
+```
+
 ### When you finish to train...
-You can save your trainded bot as prefab, make sure you set as false the debug option on the neural bot component. Now you have a full trained bot ready to be proved.
+You can save your trainded bot as prefab, make sure you set as false the debug option on the neural bot component. Now you have a full trained bot ready to be tested.
 
 ## EXAMPLES
 In this moments there are 4 examples 
