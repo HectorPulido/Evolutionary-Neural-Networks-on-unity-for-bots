@@ -132,6 +132,17 @@ This is a bot that can play Arkanoid, but is not finished yet, I don't really kn
 ## This program uses 
 1. [Simple Linear Algebra for C#](https://github.com/HectorPulido/Simple_Linear_Algebra?raw=true)
 
+## OTHER WORKS 
+### IMITATION LEARNING IN UNITY
+This is an open source project that uses neural networks and backpropagation in C#, and train it via stochastic gradient descend using the human behaviour as base <br/>
+https://github.com/HectorPulido/Imitation-learning-in-unity
+### More Genetic algorithms on Unity
+Those are three Genetics Algorithm using unity, The First one is a simple algorithm that Looks for the minimun of a function, The Second one is a solution for the Travelling Salesman Problem, The Third one is a Automata machine <br/>
+https://github.com/HectorPulido/Three-Genetics-Algorithm-Using-Unity
+## Vectorized Multilayer Neural Network from scratch
+This is a simple MultiLayer perceptron made with Simple Linear Algebra for C# , is a neural network based on This Algorithm but generalized. This neural network can calcule logic doors like Xor Xnor And Or via Stochastic gradient descent backpropagation with Sigmoid as Activation function, but can be used to more complex problems. <br/>
+https://github.com/HectorPulido/Vectorized-multilayer-neural-network
+
 ## Where can i learn more
 - On my Youtube channel (spanish) are a lot of information about Machine learning and Neural networks
 - https://www.youtube.com/channel/UCS_iMeH0P0nsIDPvBaJckOw
