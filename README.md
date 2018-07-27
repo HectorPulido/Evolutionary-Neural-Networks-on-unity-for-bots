@@ -139,7 +139,7 @@ https://github.com/HectorPulido/Imitation-learning-in-unity
 ### More Genetic algorithms on Unity
 Those are three Genetics Algorithm using unity, The First one is a simple algorithm that Looks for the minimun of a function, The Second one is a solution for the Travelling Salesman Problem, The Third one is a Automata machine <br/>
 https://github.com/HectorPulido/Three-Genetics-Algorithm-Using-Unity
-## Vectorized Multilayer Neural Network from scratch
+### Vectorized Multilayer Neural Network from scratch
 This is a simple MultiLayer perceptron made with Simple Linear Algebra for C# , is a neural network based on This Algorithm but generalized. This neural network can calcule logic doors like Xor Xnor And Or via Stochastic gradient descent backpropagation with Sigmoid as Activation function, but can be used to more complex problems. <br/>
 https://github.com/HectorPulido/Vectorized-multilayer-neural-network
 
