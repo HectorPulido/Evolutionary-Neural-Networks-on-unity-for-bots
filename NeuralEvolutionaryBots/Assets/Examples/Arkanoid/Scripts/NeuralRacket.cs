@@ -9,8 +9,8 @@ namespace EvolutionaryPerceptron.Examples.Arkanoid
         Rigidbody2D rb;
         Transform ball;
 
-        float[,] inputs;
-        float[,] outputs;
+        double[,] inputs;
+        double[,] outputs;
 
         protected override void Start()
         {
@@ -42,9 +42,9 @@ namespace EvolutionaryPerceptron.Examples.Arkanoid
         public LayerMask mask;
 
         RaycastHit2D rh = new RaycastHit2D();
-        float[,] SensorsInfo()
+        double[,] SensorsInfo()
         {
-            float[,] Sensors = new float[1, sensors.Length + 2];
+            double[,] Sensors = new double[1, sensors.Length + 2];
             for (int i = 0; i < sensors.Length; i++)
             {
                 rh = Physics2D.Raycast(sensors[i].position, sensors[i].up, maxDistance, mask);//(r, out rh, maxDistance);

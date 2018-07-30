@@ -3,13 +3,13 @@ using EvolutionaryPerceptron.MendelMachine;
 
 namespace EvolutionaryPerceptron
 {
-    [RequireComponent(typeof(NeuralBot))]
+    [RequireComponent(typeof(Brain))]
     public class BotHandler : MonoBehaviour
     {
-        protected NeuralBot nb;
+        protected Brain nb;
         protected virtual void Start()
         {
-            nb = GetComponent<NeuralBot>();
+            nb = GetComponent<Brain>();
         }
 
     }

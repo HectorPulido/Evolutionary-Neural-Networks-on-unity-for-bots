@@ -18,7 +18,7 @@ namespace EvolutionaryPerceptron.Examples.FlappyBird
             base.Start();
             StartCoroutine(InstantiateBotCoroutine());
         }
-        public override void NeuralBotDestroyed(NeuralBot neuralBot)
+        public override void NeuralBotDestroyed(Brain neuralBot)
         {
             base.NeuralBotDestroyed(neuralBot);
 

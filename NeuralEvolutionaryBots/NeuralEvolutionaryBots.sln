@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralEvolutionaryBots", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralEvolutionaryBots", "Assembly-CSharp-Editor-firstpass.csproj", "{3448B036-41E5-75E7-A41D-DA18FAAD982F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralEvolutionaryBots", "Assembly-CSharp-Editor.csproj", "{0145E0B9-C08D-C66B-251B-9606AAD32ADC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{3448B036-41E5-75E7-A41D-DA18FAAD982F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3448B036-41E5-75E7-A41D-DA18FAAD982F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3448B036-41E5-75E7-A41D-DA18FAAD982F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0145E0B9-C08D-C66B-251B-9606AAD32ADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0145E0B9-C08D-C66B-251B-9606AAD32ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0145E0B9-C08D-C66B-251B-9606AAD32ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0145E0B9-C08D-C66B-251B-9606AAD32ADC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,7 +16,6 @@ namespace EvolutionaryPerceptron.Examples.FlappyBird
         void Update()
         {
             var output = nb.SetInput(GetInputs());
-
             if (output[0, 0] > 0.5f)
             {
                 flappy.jumpRequest = true;
@@ -25,7 +24,7 @@ namespace EvolutionaryPerceptron.Examples.FlappyBird
             nb.AddFitness(Time.deltaTime);
         }
 
-        float[,] GetInputs()
+        double[,] GetInputs()
         {
             Obstacles o = null;
 
@@ -64,7 +63,7 @@ namespace EvolutionaryPerceptron.Examples.FlappyBird
 
             var n5 = o == null ? 0 : o.center.position.y;
 
-            return new float[1, 5] { { n1, n2, n3, n4, n5 } };
+            return new double[1, 5] { { n1, n2, n3, n4, n5 } };
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

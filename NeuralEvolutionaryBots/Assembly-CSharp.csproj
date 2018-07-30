@@ -65,13 +65,13 @@
      <Compile Include="Assets\Examples\SelfDrivingCar\Scripts\ConsecutiveGeneration.cs" />
      <Compile Include="Assets\Examples\SelfDrivingCar\Scripts\NeuralCar.cs" />
      <Compile Include="Assets\Examples\SelfDrivingCar\Scripts\TimeManager.cs" />
-     <Compile Include="Assets\FloatLinearAlgebra\Helper.cs" />
-     <Compile Include="Assets\FloatLinearAlgebra\LinearAlgebra.cs" />
      <Compile Include="Assets\NeuralBots\BotHandler.cs" />
-     <Compile Include="Assets\NeuralBots\EvolutionaryPerceptron.cs" />
+     <Compile Include="Assets\NeuralBots\Brain.cs" />
+     <Compile Include="Assets\NeuralBots\Enums.cs" />
+     <Compile Include="Assets\NeuralBots\LinearAlgebra.cs" />
      <Compile Include="Assets\NeuralBots\MendelMachine.cs" />
-     <Compile Include="Assets\NeuralBots\NeuralBot.cs" />
      <Compile Include="Assets\NeuralBots\NeuralHandler.cs" />
+     <Compile Include="Assets\NeuralBots\NeuralNet.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/ASUS/Downloads/FromGithub/Evolutionary-Neural-Networks-on-unity-for-bots/NeuralEvolutionaryBots/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

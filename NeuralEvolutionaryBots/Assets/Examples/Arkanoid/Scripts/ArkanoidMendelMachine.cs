@@ -15,7 +15,7 @@ namespace EvolutionaryPerceptron.Examples.Arkanoid
         [SerializeField]
         int index;
 
-        NeuralBot[] currentNeuralBot;
+        Brain[] currentNeuralBot;
         GameObject[] currentBlocks;
         int count;
         protected override void Start()
@@ -29,7 +29,7 @@ namespace EvolutionaryPerceptron.Examples.Arkanoid
 
             individualsPerGeneration = scenarios.Length;
             currentBlocks = new GameObject[individualsPerGeneration];
-            currentNeuralBot = new NeuralBot[individualsPerGeneration];
+            currentNeuralBot = new Brain[individualsPerGeneration];
             for (int i = 0; i < individualsPerGeneration; i++)
             {
                 scenarios[i].id = i;
@@ -38,7 +38,7 @@ namespace EvolutionaryPerceptron.Examples.Arkanoid
             StartCoroutine(InstantiateBotCoroutine(0.3f));
         }
 
-        public override void NeuralBotDestroyed(NeuralBot neuralBot)
+        public override void NeuralBotDestroyed(Brain neuralBot)
         {
             base.NeuralBotDestroyed(neuralBot);
 

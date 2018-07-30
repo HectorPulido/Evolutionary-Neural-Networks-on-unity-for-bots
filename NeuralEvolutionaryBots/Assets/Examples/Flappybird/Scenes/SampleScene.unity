@@ -270,12 +270,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataManagment: 1
   useRelativeDataPath: 1
-  dataPath: DataFlappy
+  dataPath: DataFlappy.mm
   numberOfGenerationsToSave: 20
   force: 0
   activationFunction: 0
   neuronsPerLayer: 050000000a00000001000000
-  seed: 0
+  seed: 99
   mutationRate: 0.1
   maxPerturbation: 0.3
   elitism: 4

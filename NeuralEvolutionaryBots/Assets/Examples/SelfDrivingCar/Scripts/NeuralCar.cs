@@ -19,11 +19,11 @@ namespace EvolutionaryPerceptron.Examples.SelfDrivingCar
             cc = GetComponent<CarController>();
             rb = GetComponent<Rigidbody>();
 
-            d = new float[1,rayCount + 2];
+            d = new double[1,rayCount + 2];
         }
 
-        float[,] inputs;
-        float[,] outputs;
+        double[,] inputs;
+        double[,] outputs;
 
         void Update()
         {
@@ -36,11 +36,11 @@ namespace EvolutionaryPerceptron.Examples.SelfDrivingCar
                        0);//(float)outputs[3] * 2f - 1);
         }
 
-        float[,] d;
+        double[,] d;
         Ray r;
         RaycastHit rh;
         float angle;
-        float[,] SensorsInfo()
+        double[,] SensorsInfo()
         {
             for (int i = 0; i < rayCount; i++)
             {
@@ -54,7 +54,7 @@ namespace EvolutionaryPerceptron.Examples.SelfDrivingCar
                 else                
                     d[0, i] = 1;                
 
-                Debug.DrawRay(r.origin, r.direction * d[0, i] * maxDistance, Color.green);
+                Debug.DrawRay(r.origin, r.direction * (float) d[0, i] * maxDistance, Color.green);
             }
             d[0, rayCount + 0] = cc.CurrentSpeed / cc.MaxSpeed;
             d[0, rayCount + 1] = rb.angularVelocity.magnitude / rb.maxAngularVelocity;           

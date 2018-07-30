@@ -20,7 +20,7 @@ namespace EvolutionaryPerceptron.Examples.SelfDrivingCar
             StartCoroutine(InstantiateBotCoroutine(0.3f));
         }
 
-        public override void NeuralBotDestroyed(NeuralBot neuralBot)
+        public override void NeuralBotDestroyed(Brain neuralBot)
         {
             base.NeuralBotDestroyed(neuralBot);
 
