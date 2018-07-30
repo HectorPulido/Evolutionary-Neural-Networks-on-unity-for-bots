@@ -69,12 +69,12 @@ public class NeuralExample : BotHandler
         }	
 	void Update()
         {
-		var i = new float[1, 5] { { n1, n2, n3, n4, n5 } }; // Sensor info
+		var i = new double[1, 5] { { n1, n2, n3, n4, n5 } }; // Sensor info
             	var output = nb.SetInput(i); //Feed forward
 		
 		cs.speed = output[0, 0]; // Linear something
 
-            	if (output[0, 1] > 0.5f) // Trigger something
+            	if (output[0, 1] > 0.5) // Trigger something
             	{
                 	cs.jumpRequest = true;
             	}
@@ -94,7 +94,8 @@ public class NeuralExample : BotHandler
 ```
 
 ### When you finish to train...
-You can save your trainded bot as prefab, make sure you set as false the debug option on the neural bot component. Now you have a full trained bot ready to be tested.
+![Save and Load](/Images/Save%20and%20load.jpg "Self driving car")<br/>
+Now you can select the bot you want to save, and press the save button, that will generate a .nn file, that file is compatible with IMITATION LEARNING, you also can load .nn files by drag and drop, just desactivate the Learning Phase boolean
 
 ## EXAMPLES
 In this moments there are 4 examples 
@@ -120,14 +121,13 @@ A useful shoot give 2 points<br/>
 A fail shoot give -5 points <br/>
 When the bot move a lot give 1 point <br/>
 When health is lost give -1 points <br/>
-<b>The project is not in this here, it's in other repository<b/>
+<b>The project is not in this here, it's in other repository <b/>
 https://github.com/HectorPulido/Evolutionary-Neural-Bots-On-Survival-Shooter <br/>
 Assets Licence: Apache 2.0
 
 ### Arkanoid Bot
 ![Arkanoid Bot](/Images/Arkanoid.jpg?raw=true "Arkanoid Bot")<br/>
-
-This is a bot that can play Arkanoid, but is not finished yet, I don't really know what the fitness function must be
+This example is not available right now
 
 ## This program uses 
 1. [Simple Linear Algebra for C#](https://github.com/HectorPulido/Simple_Linear_Algebra?raw=true)
