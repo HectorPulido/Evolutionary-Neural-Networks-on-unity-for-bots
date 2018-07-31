@@ -32,26 +32,43 @@ Open it on unity 2018 or greater (sorry about that >-< ), is also recomended to 
 You need two things a mendel machine (a trainer if you like the concept), to use it you need to iherit from the class mendel machine and set up, things like the startpoints or the behaviour when the generation is over.
 
 ```csharp
-using Evolutionary_perceptron.MendelMachine;
+using EvolutionaryPerceptron.MendelMachine;
 
-public class MyEnvorimentMendelMachine : MendelMachine
-{
+public class ExampleMendelMachine : MendelMachine {
+
+	int index = 0; //Just one way to change the generation
 	//Init all variables
 	protected override void Start()
-        {
-            base.Start(); 
-            StartCoroutine(InstantiateBotCoroutine());
-        }	
+	{
+		individualsPerGeneration = somenumber; //You can set an individuals per generation here
+		base.Start(); 
+		StartCoroutine(InstantiateBotCoroutine());
+	}	
 	//When a bot die
-	public override void NeuralBotDestroyed(NeuralBot neuralBot)
-        {
-            //Doo some cool stuff, read the examples
-        }
+	public override void NeuralBotDestroyed(Brain neuralBot)
+	{
+		//Doo some cool stuff, read the examples
+		Destroy(neuralBot.gameObject); //Don't forget to destroy the gameObject
+		
+		index--;
+		if (index <= 0)
+		{
+			Save(); //don't forget to save when you change the generation
+			population = Mendelization();
+			generation++;
+			StartCoroutine(InstantiateBotCoroutine());
+		}
+	}
 	//You can instantiate one, two, what you want
 	IEnumerator InstantiateBotCoroutine()
-        {
-            //Instantiate bots
-        }
+	{
+		//Instantiate bots
+		index = individualsPerGeneration;
+		for	(int i = 0 ; i < individualsPerGeneration ; i++)
+		{
+			var b = InstantiateBot(population[i], lifeTime, Vector3.Zero, i); // A way to instantiate
+		}
+	}
 }
 ```
 
@@ -102,32 +119,42 @@ In this moments there are 4 examples
 ### Self driving car
 ![Self driving car](/Images/SelfDriving%20car.jpg "Self driving car")<br/>
 
-This is the most complete example right now, it can be trained on just 10 generations, the sensors are Raycast and the actuator is the Unity Standard Asset Vehicle Car
-The fitnes function is, how many checkpoints it touch.
+An automatic Car in unity, it can be trained on just 10 generations, the sensors are Raycast and the actuator is the Unity Standard Asset Vehicle Car
+
+#### Fitness function
+The fitnes function is, how many checkpoints it touch and the Die function is the collision with the tag "Obstacle"
 
 ### Flappy bird bots
 ![Flappy Bot](/Images/Flappy.gif "Arkanoid Bot") <br/>
+This is a flappy bird game bot made with this library, the sensors are 3 raycast, the position, and the center of the obstacles
 
-This is a flappy bird game bot made with this library, the fitness function is the time, and the Die function is the collision with the tag "Obstacle" <br/> 
+#### Fitness function
+The fitness function is the time, and the Die function is the collision with the tag "Obstacle" <br/> 
 Assets from <br/>
 https://opengameart.org/content/flappy-beans<br/>
 Assets Licence: CC-BY 4.0
 
 ### Survival bot
 ![Survival Bot](/Images/Survival.gif "Survival Bot")<br/>
-This is an implementation of the algorithm in the [Survival shooter project from Unity Tec. ](https://www.assetstore.unity3d.com/en/#!/content/40756) <br/>
+This is an implementation of the algorithm in the [Survival shooter project from Unity Tec. ](https://www.assetstore.unity3d.com/en/#!/content/40756) 
+The sensors are a lot of raycast that detect shootables, and enemies, and the die function is when the life gets 0 
+
 #### Fitness function
 A useful shoot give 2 points<br/>
 A fail shoot give -5 points <br/>
 When the bot move a lot give 1 point <br/>
 When health is lost give -1 points <br/>
-<b>The project is not in this here, it's in other repository <b/>
+
+#### The project is not in this here, it's in other repository 
 https://github.com/HectorPulido/Evolutionary-Neural-Bots-On-Survival-Shooter <br/>
 Assets Licence: Apache 2.0
 
-### Arkanoid Bot
-![Arkanoid Bot](/Images/Arkanoid.jpg?raw=true "Arkanoid Bot")<br/>
-This example is not available right now
+### PONG Bot
+![Pong Bot](/Images/Pong.gif "Pong Bot")<br/>
+This is an implementation for the pong game, the sensors are the position and velocity of the ball, the the position and the velocity of the enemy racket and the position of the racket (All the position must be locals) 
+#### Fitness function
+Pro point add one of fitness point <br/>
+Contra point remove one of fitness point <br/>
 
 ## This program uses 
 1. [Simple Linear Algebra for C#](https://github.com/HectorPulido/Simple_Linear_Algebra?raw=true)
