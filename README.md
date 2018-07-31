@@ -32,7 +32,7 @@ Open it on unity 2018 or greater (sorry about that >-< ), is also recomended to 
 You need two things a mendel machine (a trainer if you like the concept), to use it you need to iherit from the class mendel machine and set up, things like the startpoints or the behaviour when the generation is over.
 
 ```csharp
-using EvolutionaryPerceptron.MendelMachine;
+using Evolutionary_perceptron.MendelMachine;
 
 public class MyEnvorimentMendelMachine : MendelMachine
 {
@@ -58,8 +58,6 @@ public class MyEnvorimentMendelMachine : MendelMachine
 And you also need a interpreter of the neural bot class this class will act like a Senses and Actuators from the body (the individual), I recomend that the sensors where raycast (o raycast2D) or any lineal information, this class also can change the fitness of the neuralbot.
 
 ```csharp
-using EvolutionaryPerceptron;
-
 public class NeuralExample : BotHandler
 {
 	MyControllerClass cs;
@@ -123,7 +121,7 @@ A useful shoot give 2 points<br/>
 A fail shoot give -5 points <br/>
 When the bot move a lot give 1 point <br/>
 When health is lost give -1 points <br/>
-##### The project is not in this here, it's in other repository
+<b>The project is not in this here, it's in other repository <b/>
 https://github.com/HectorPulido/Evolutionary-Neural-Bots-On-Survival-Shooter <br/>
 Assets Licence: Apache 2.0
 
