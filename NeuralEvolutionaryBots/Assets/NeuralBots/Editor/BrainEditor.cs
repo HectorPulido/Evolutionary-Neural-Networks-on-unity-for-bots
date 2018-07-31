@@ -14,7 +14,6 @@ namespace EvolutionaryPerceptron.MendelMachine.Editor
 	[CustomEditor(typeof(Brain))]
 	public class BrainEditor : Editor 
 	{
-
 		Brain b ;
 		void OnEnable()
 		{
@@ -32,7 +31,6 @@ namespace EvolutionaryPerceptron.MendelMachine.Editor
 				EditorGUILayout.HelpBox("Desactive learning phase if you want to deploy, ", MessageType.Warning);
 			}
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("activationFunction"));
-			EditorGUILayout.PropertyField(serializedObject.FindProperty("brainPath"));
 			if(b.perceptron.W.Length != 0)
 			{
 				EditorGUILayout.HelpBox("You can save this neural network", MessageType.Info);

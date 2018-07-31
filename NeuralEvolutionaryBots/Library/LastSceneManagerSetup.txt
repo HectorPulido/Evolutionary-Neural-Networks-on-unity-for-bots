@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Examples/Flappybird/Scenes/SampleScene.unity
+- path: Assets/Examples/Pong/Scenes/Pong.unity
   isLoaded: 1
   isActive: 1

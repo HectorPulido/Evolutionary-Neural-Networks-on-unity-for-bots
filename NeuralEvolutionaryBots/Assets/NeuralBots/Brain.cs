@@ -30,7 +30,6 @@ namespace EvolutionaryPerceptron.MendelMachine
 
         void Start()
         {
-            Debug.Log(brainPath);
             if(!learningPhase && !string.IsNullOrEmpty(brainPath))
             {
                 
