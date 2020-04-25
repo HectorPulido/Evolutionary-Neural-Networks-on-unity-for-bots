@@ -47,6 +47,9 @@ public class ExampleMendelMachine : MendelMachine {
 	//When a bot die
 	public override void NeuralBotDestroyed(Brain neuralBot)
 	{
+		//Consolidate the fitness
+        base.NeuralBotDestroyed(neuralBot);
+
 		//Doo some cool stuff, read the examples
 		Destroy(neuralBot.gameObject); //Don't forget to destroy the gameObject
 		
@@ -66,7 +69,7 @@ public class ExampleMendelMachine : MendelMachine {
 		index = individualsPerGeneration;
 		for	(int i = 0 ; i < individualsPerGeneration ; i++)
 		{
-			var b = InstantiateBot(population[i], lifeTime, Vector3.Zero, i); // A way to instantiate
+			var b = InstantiateBot(population[i], lifeTime, someTransform, i); // A way to instantiate
 		}
 	}
 }
@@ -80,14 +83,14 @@ public class NeuralExample : BotHandler
 	MyControllerClass cs;
 	//Init all variables
 	protected override void Start()
-        {
-           	base.Start();
-            	cs = GetComponent<MyControllerClass>();
-        }	
+	{
+		base.Start();
+		cs = GetComponent<MyControllerClass>();
+	}	
 	void Update()
-        {
+	{
 		var i = new double[1, 5] { { n1, n2, n3, n4, n5 } }; // Sensor info
-            	var output = nb.SetInput(i); //Feed forward
+		var output = nb.SetInput(i); //Feed forward
 		
 		cs.speed = output[0, 0]; // Linear something
 
@@ -96,23 +99,22 @@ public class NeuralExample : BotHandler
                 	cs.jumpRequest = true;
             	}
 		nb.AddFitness(Time.deltaTime); // You can reward the lifetime
-        }
+	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
-        {
+	{
 		//Example of destroy
-            	if (collision.CompareTag("Obstacle"))
-            	{
-                	nb.Destroy();
-            	}
-        }
+		if (collision.CompareTag("Obstacle"))
+		{
+			nb.Destroy();
+		}
+	}
 
 }
 ```
 
 ### When you finish to train...
-![Save and Load](/Images/Save%20and%20load.jpg "Self driving car")<br/>
-Now you can select the bot you want to save, and press the save button, that will generate a .nn file, that file is compatible with IMITATION LEARNING, you also can load .nn files by drag and drop, just desactivate the Learning Phase boolean
+Now you can select the bot you want to save, and press the save button, that will generate a .nn file, that file is compatible with IMITATION LEARNING, just desactivate the Learning Phase boolean
 
 ## EXAMPLES
 In this moments there are 4 examples 
@@ -125,8 +127,13 @@ An automatic Car in unity, it can be trained on just 10 generations, the sensors
 The fitnes function is, how many checkpoints it touch and the Die function is the collision with the tag "Obstacle"
 
 ### Flappy bird bots
-![Flappy Bot](/Images/Flappy.gif "Arkanoid Bot") <br/>
+![Flappy Bot](/Images/Flappy.gif) <br/>
 This is a flappy bird game bot made with this library, the sensors are 3 raycast, the position, and the center of the obstacles
+
+### Dinosaur clone bots
+![Dinosaur](/Images/DinoChrome.gif) <br/>
+This is a google chrome clone, it have 7 raycast as sensor aditional to the 7 raycast of the last frame, and 2 buttons as outputs also the fitness function is the lifetime
+
 
 #### Fitness function
 The fitness function is the time, and the Die function is the collision with the tag "Obstacle" <br/> 

@@ -1,0 +1,332 @@
+fileFormatVersion: 2
+guid: 925d2640d2a82574eb1dd336c209353d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1874470561882008770
+    second: Pequenito_dinosaurio_0
+  - first:
+      213: 5530757948146154661
+    second: Pequenito_dinosaurio_1
+  - first:
+      213: 1918141013516656061
+    second: Pequenito_dinosaurio_2
+  - first:
+      213: 3735859181003237549
+    second: Pequenito_dinosaurio_3
+  - first:
+      213: 884026041876180879
+    second: Pequenito_dinosaurio_4
+  - first:
+      213: -8239149770614471551
+    second: Pequenito_dinosaurio_5
+  - first:
+      213: -3945278279325537281
+    second: Pequenito_dinosaurio_6
+  - first:
+      213: 945712461816430746
+    second: Pequenito_dinosaurio_7
+  - first:
+      213: -460310790765171576
+    second: Pequenito_dinosaurio_0
+  - first:
+      213: 5214795532752224810
+    second: Pequenito_dinosaurio_1
+  - first:
+      213: 845223584097171883
+    second: Pequenito_dinosaurio_2
+  - first:
+      213: 788483330526442219
+    second: Pequenito_dinosaurio_3
+  - first:
+      213: -3936784849251063936
+    second: Pequenito_dinosaurio_4
+  - first:
+      213: -5250226654911890113
+    second: Pequenito_dinosaurio_5
+  - first:
+      213: -4634455455720070120
+    second: Pequenito_dinosaurio_6
+  - first:
+      213: 4205978948485883690
+    second: Pequenito_dinosaurio_7
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pequenito_dinosaurio_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 0
+        width: 38
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88ca92e46c5ac99f0800000000000000
+      internalID: -460310790765171576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pequenito_dinosaurio_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 0
+        width: 38
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a228df968ecae5840800000000000000
+      internalID: 5214795532752224810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pequenito_dinosaurio_2
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 0
+        width: 38
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba9f4ed1f56dabb00800000000000000
+      internalID: 845223584097171883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pequenito_dinosaurio_3
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 0
+        width: 38
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be2785b596141fa00800000000000000
+      internalID: 788483330526442219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pequenito_dinosaurio_4
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 0
+        width: 38
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 087204f990bbd59c0800000000000000
+      internalID: -3936784849251063936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pequenito_dinosaurio_5
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 1
+        width: 34
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3d70bb9ca27327b0800000000000000
+      internalID: -5250226654911890113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pequenito_dinosaurio_6
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 0
+        width: 60
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8142f62415b1fafb0800000000000000
+      internalID: -4634455455720070120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pequenito_dinosaurio_7
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 0
+        width: 61
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a27a545c193ae5a30800000000000000
+      internalID: 4205978948485883690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: abadc8b1ecfc45246a7cffd14d85248a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
