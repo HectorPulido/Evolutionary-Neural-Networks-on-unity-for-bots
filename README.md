@@ -141,6 +141,18 @@ Assets from <br/>
 https://opengameart.org/content/flappy-beans<br/>
 Assets Licence: CC-BY 4.0
 
+### Asteroids like game
+![Asteroids like game](https://github.com/HectorPulido/Asteroids-like-game/raw/master/img/img_ml.gif)<br/>
+This is an implementation of the algorithm for the Asteroid game; The sensors are a lot of raycast that detect asteroids, and the die function is when ship collide with an asteroid, and there are 3 output, one for shoot, one for turn, other for accelerate
+
+#### Fitness function
+Lifetime without shoot is a positive reward<br/>
+Shooting time is a negative reward <br/>
+
+#### The project is not in this here, it's in other repository 
+https://github.com/HectorPulido/Asteroids-like-game <br/>
+Assets Licence: MIT
+
 ### Survival bot
 ![Survival Bot](/Images/Survival.gif "Survival Bot")<br/>
 This is an implementation of the algorithm in the [Survival shooter project from Unity Tec. ](https://www.assetstore.unity3d.com/en/#!/content/40756) 
