@@ -10,23 +10,29 @@ public class DinoHandler : BotHandler {
     protected override void Start () {
         base.Start ();
         cs = GetComponent<DinoPlayer> ();
+
+        lastInputs = new double[numberOfRaycast];
     }
 
-    double[] lastInputs = new double[7] { 0, 0, 0, 0, 0, 0, 0 };
+    double[] lastInputs;
     double[] inputs;
-    void Update () {
-        inputs = GetInputs ();
+    private void Update () {
+        var time = Time.deltaTime;
+        var inputs = GetInputs ();
+        var currentInput = new double[1, numberOfRaycast * 2 + 2]; // Sensor info
+        for (var i = 0; i < numberOfRaycast; i++) {
+            currentInput[0, i] = inputs[i];
+        }
+        for (var i = 0; i < numberOfRaycast; i++) {
+            currentInput[0, i + numberOfRaycast] = (inputs[i] - lastInputs[i]) * time;
+        }
 
-        var i = new double[1, 14] {
-            {
-            inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], inputs[5], inputs[6],
-            lastInputs[0], lastInputs[1], lastInputs[2], lastInputs[3], lastInputs[4], lastInputs[5], lastInputs[6]
-            }
-        }; // Sensor info
+        currentInput[0, numberOfRaycast * 2] = transform.position.y;
+        currentInput[0, numberOfRaycast * 2 + 1] = transform.position.x;
 
         lastInputs = (double[])inputs.Clone();
 
-        var output = nb.SetInput (i); //Feed forward
+        var output = nb.SetInput (currentInput); //Feed forward
 
         if (output[0, 0] > 0.5) // Trigger something
         {
@@ -38,31 +44,33 @@ public class DinoHandler : BotHandler {
             cs.JumpArrow = true;
         }
 
-        nb.AddFitness (Time.deltaTime); // You can reward the lifetime
+        nb.AddFitness (time); // You can reward the lifetime
     }
 
-    double[] GetInputs () {
+    public int numberOfRaycast = 12;
+    public int offsetAngle = 0;
+    public int arcAngle = 180;
 
-        var ray = Physics2D.Raycast (transform.position, Vector2.right, 999999, 1);
-        var n1 = ray.collider != null ? ray.distance : 999999;
-
-        ray = Physics2D.Raycast (transform.position, (Vector2.right + Vector2.down).normalized, 999999, 1);
-        var n2 = ray.collider != null ? ray.distance : 999999;
-
-        ray = Physics2D.Raycast (transform.position, (Vector2.right + Vector2.up).normalized, 999999, 1);
-        var n3 = ray.collider != null ? ray.distance : 999999;
-
-        ray = Physics2D.Raycast (transform.position, (Vector2.right + Vector2.up * 0.5f).normalized, 999999, 1);
-        var n6 = ray.collider != null ? ray.distance : 999999;
-
-        ray = Physics2D.Raycast (transform.position, (Vector2.right + Vector2.up * 0.75f).normalized, 999999, 1);
-        var n7 = ray.collider != null ? ray.distance : 999999;
+    private double[] GetInputs () {
 
 
-        var n4 = transform.position.y;
-        var n5 = transform.position.x;
+        var inputs = new double[numberOfRaycast];
+        var currentRotation = transform.eulerAngles.z;
 
-        return new double[7] { n1, n2, n3, n4, n5, n6, n7 };
+        for (var i = 0; i < numberOfRaycast; i++) {
+            var angle = (float)offsetAngle + (arcAngle * i) / numberOfRaycast;
+            angle += currentRotation;
+            var direction = Quaternion.AngleAxis (angle, Vector3.forward) * Vector3.right;
+            direction = direction.normalized;
+
+            var ray = Physics2D.Raycast (transform.position, direction, 999, mask);
+            var length = ray.collider != null ? ray.distance / 999 : 1;
+
+            inputs[i] = length;
+
+            Debug.DrawRay (transform.position, direction * length * 999, Color.green);
+        }
+        return inputs;
     }
 
     private void OnTriggerEnter2D (Collider2D collision) {

@@ -57,13 +57,13 @@ public class DinoPlayer : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if (IsGround) {
-            if (JumpArrow && !jumpRequest) {
+            if (JumpArrow) {
                 jumpRequest = true;
             }
 
             animator.SetBool ("sneaking", DownArrow);
         } else {
-            if (DownArrow && !downRequest) {
+            if (DownArrow) {
                 downRequest = true;
             }
         }

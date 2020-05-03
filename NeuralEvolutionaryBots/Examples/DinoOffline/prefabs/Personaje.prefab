@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1192586853535128572}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192586853535128571}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.045, z: 0}
+  m_LocalPosition: {x: 0, y: -0.009, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9031080442259868918}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 1192586853448920260}
   - component: {fileID: 9031080442259868906}
   - component: {fileID: 9031080442259868907}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Personaje
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -167,10 +167,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpSpeed: 6
   groundCheckPosition: {fileID: 1192586853535128572}
-  groundCheckSize: {x: 0.38, y: 0.17}
+  groundCheckSize: {x: 0.38, y: 0.02}
   mask:
     serializedVersion: 2
-    m_Bits: 311
+    m_Bits: 55
   DownArrow: 0
   JumpArrow: 0
 --- !u!114 &1192586853448920261
@@ -187,7 +187,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask:
     serializedVersion: 2
-    m_Bits: 311
+    m_Bits: 55
+  numberOfRaycast: 64
+  offsetAngle: -90
+  arcAngle: 180
 --- !u!114 &1192586853448920260
 MonoBehaviour:
   m_ObjectHideFlags: 0
