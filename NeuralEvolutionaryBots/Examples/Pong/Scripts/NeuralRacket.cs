@@ -1,45 +1,59 @@
 ﻿using UnityEngine;
-namespace EvolutionaryPerceptron.Examples.Arkanoid
-{
-    [RequireComponent(typeof(Rigidbody2D))]
-    public class NeuralRacket : BotHandler
-    {
+namespace EvolutionaryPerceptron.Examples.Arkanoid {
+    [RequireComponent (typeof (Rigidbody2D))]
+    public class NeuralRacket : BotHandler {
         public float velocity;
         public PongManager currentPongManager;
 
-        Rigidbody2D rb;
-        Rigidbody2D ball;
-        Rigidbody2D enemyRacket;
-        
+        private Rigidbody2D rb;
+        private Rigidbody2D ball;
+        private Rigidbody2D enemyRacket;
 
-        double[,] inputs;
-        double[,] outputs;
+        private double[, ] inputs;
+        private double[, ] outputs;
 
-        protected override void Start()
-        {
-            base.Start();
-            rb = GetComponent<Rigidbody2D>();
+        protected override void Start () {
+            base.Start ();
+            rb = GetComponent<Rigidbody2D> ();
             ball = currentPongManager.ballRb;
             enemyRacket = currentPongManager.racket;
+            lastInputs = new double[1, 7 * 2];
         }
 
-        float v;
-        void Update()
-        {
-            inputs = new double[,]{{ball.transform.localPosition.x, ball.transform.localPosition.y, 
-                                    ball.velocity.x, ball.velocity.y, 
-                                    enemyRacket.transform.localPosition.y ,enemyRacket.transform.localPosition.y, 
-                                    transform.transform.localPosition.y}};
+        private float v;
+        private double[, ] lastInputs;
+        private void Update () {
+            var timeDiference = Time.deltaTime;
+            inputs = new double[1, 7 * 2] {
+                {
+                ball.transform.localPosition.x,
+                ball.transform.localPosition.y,
+                ball.velocity.x,
+                ball.velocity.y,
+                enemyRacket.transform.localPosition.y,
+                enemyRacket.transform.localPosition.y,
+                transform.transform.localPosition.y,
+                0, 0, 0, 0, 0, 0, 0
+                }
+            };
 
-            outputs = nb.SetInput(inputs);
-            v = (float)outputs[0,0];
+            for (int i = 0; i < 7; i++) {
+                inputs[0, i + 7] = (inputs[0, i] - lastInputs[0, i]) * timeDiference;
+            }
+
+            lastInputs = (double[, ]) inputs.Clone ();
+
+            outputs = nb.SetInput (inputs);
+            v = (float) outputs[0, 0];
         }
-        void FixedUpdate()
-        {
-			var vel = v * velocity;
-			vel = Mathf.Clamp(vel, -velocity, velocity);
+        private void FixedUpdate () {
+            var vel = v * velocity;
+            vel = Mathf.Clamp (vel, -velocity, velocity);
 
-			rb.velocity = new Vector2(0, vel);
+            rb.velocity = new Vector2 (0, vel);
+        }
+        public void DestroySelf () {
+            nb.Destroy ();
         }
     }
 }

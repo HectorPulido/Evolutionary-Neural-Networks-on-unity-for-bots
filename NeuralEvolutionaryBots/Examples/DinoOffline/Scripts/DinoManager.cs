@@ -1,98 +1,102 @@
 using System.Collections;
 using System.Collections.Generic;
+using EvolutionaryPerceptron.MendelMachine;
 using TMPro;
 using UnityEngine;
-using EvolutionaryPerceptron.MendelMachine;
 
-public class DinoManager : MendelMachine {
+namespace EvolutionaryPerceptron.Examples.Dino {
+    public class DinoManager : EvolutionaryPerceptron.MendelMachine.MendelMachine {
 
-    public static DinoManager singleton;
+        public static DinoManager singleton;
 
+        [Header ("Manager properties")]
+        public float scrollSpeed = 5;
+        public float scrollAcceleration = 1;
 
-    [Header("Manager properties")]
-    public TextMeshProUGUI scoreText;
+        public float enemySpeed = 0.5f;
+        public float enemyAcceleration = 0.2f;
 
-    public float scrollSpeed = 5;
-    public float scrollAcceleration = 1;
+        private float intialScrollSpeed = 5;
+        private float intialEnemySpeed = 0.5f;
 
-    public float enemySpeed = 0.5f;
-    public float enemyAcceleration = 0.2f;
+        public int index = 0; //Just one way to change the generation
 
-    private float intialScrollSpeed = 5;
-    private float intialEnemySpeed = 0.5f;
+        public float lifeTime = 20;
+        public Transform initialPlace;
 
-    public float score;
+        public int generationFraction;
 
-    public int index = 0; //Just one way to change the generation
+        int fraction = 0;
 
-    public float lifeTime = 20;
-    public Transform initialPlace;
+        protected override void Start () {
+            if (singleton != null) {
+                Destroy (this);
+                return;
+            }
 
-    protected override void Start () {
-        if (singleton != null) {
-            Destroy (this);
-            return;
+            fraction = individualsPerGeneration;
+            index = individualsPerGeneration;
+
+            singleton = this;
+
+            intialScrollSpeed = scrollSpeed;
+            intialEnemySpeed = enemySpeed;
+
+            base.Start ();
+            StartCoroutine (InstantiateBotCoroutine ());
         }
 
-        singleton = this;
+        public void Lose () {
+            //scrollSpeed = intialScrollSpeed;
+            enemySpeed = intialEnemySpeed;
 
-        intialScrollSpeed = scrollSpeed;
-        intialEnemySpeed = enemySpeed;
+            var obstacles = GameObject.FindGameObjectsWithTag ("Obstacle");
 
-		base.Start(); 
-		StartCoroutine(InstantiateBotCoroutine());
-    }
-
-    private void Update () {
-        enemySpeed += Time.deltaTime * enemyAcceleration;
-        scrollSpeed += Time.deltaTime * scrollAcceleration;
-
-        score += Time.deltaTime;
-        scoreText.text = ((int) score).ToString ();
-    }
-
-    public void Lose () {
-        score = 0;
-        scrollSpeed = intialScrollSpeed;
-        enemySpeed = intialEnemySpeed;
-
-        var obstacles = GameObject.FindGameObjectsWithTag ("Obstacle");
-
-        foreach (GameObject obstacle in obstacles) {
-            Destroy (obstacle);
+            foreach (GameObject obstacle in obstacles) {
+                Destroy (obstacle);
+            }
         }
-    }
 
+        //When a bot die
+        public override void NeuralBotDestroyed (Brain neuralBot) {
+            base.NeuralBotDestroyed (neuralBot);
 
-    //When a bot die
-	public override void NeuralBotDestroyed(Brain neuralBot)
-	{
-        base.NeuralBotDestroyed(neuralBot);
+            //Doo some cool stuff, read the examples
+            Destroy (neuralBot.gameObject); //Don't forget to destroy the gameObject
 
-		//Doo some cool stuff, read the examples
-		Destroy(neuralBot.gameObject); //Don't forget to destroy the gameObject
-		
-		index--;
-		if (index <= 0)
-		{
-            Lose();
-			Save(); //don't forget to save when you change the generation
-			population = Mendelization();
-			generation++;
-			StartCoroutine(InstantiateBotCoroutine());
-		}
-	}
+            index--;
+            remaining--;
 
-    //You can instantiate one, two, what you want
-	IEnumerator InstantiateBotCoroutine()
-	{
-        yield return new WaitForSeconds(0);
-		//Instantiate bots
-		index = individualsPerGeneration;
-		for	(int i = 0 ; i < individualsPerGeneration ; i++)
-		{
-			var b = InstantiateBot(population[i], lifeTime, initialPlace, i); // A way to instantiate
+            if (index <= 0) {
+                Save (); //don't forget to save when you change the generation
+                population = Mendelization ();
+                generation++;
+                fraction = individualsPerGeneration;
+                index = individualsPerGeneration;
+                Lose ();
+                StartCoroutine (InstantiateBotCoroutine ());
+            } else {
+                if (remaining == 0) {
+                    Lose ();
+                    StartCoroutine (InstantiateBotCoroutine ());
+                }
+            }
         }
-	}
 
+        int remaining = 0;
+
+        //You can instantiate one, two, what you want
+        IEnumerator InstantiateBotCoroutine () {
+            yield return new WaitForSeconds (0);
+            //Instantiate bots
+            for (int i = 0; i < generationFraction; i++) {
+                fraction--;
+                if (fraction < 0)
+                    break;
+                remaining++;
+                var b = InstantiateBot (population[fraction], lifeTime, initialPlace, fraction);
+            }
+        }
+
+    }
 }
