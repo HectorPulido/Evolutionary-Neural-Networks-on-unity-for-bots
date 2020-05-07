@@ -134,12 +134,9 @@ This is a flappy bird game bot made with this library, the sensors are 3 raycast
 ![Dinosaur](/Images/DinoChrome.gif) <br/>
 This is a google chrome clone, it have 7 raycast as sensor aditional to the 7 raycast of the last frame, and 2 buttons as outputs also the fitness function is the lifetime
 
-
 #### Fitness function
 The fitness function is the time, and the Die function is the collision with the tag "Obstacle" <br/> 
 Assets from <br/>
-https://opengameart.org/content/flappy-beans<br/>
-Assets Licence: CC-BY 4.0
 
 ### Asteroids like game
 ![Asteroids like game](https://github.com/HectorPulido/Asteroids-like-game/raw/master/img/img_ml.gif)<br/>
