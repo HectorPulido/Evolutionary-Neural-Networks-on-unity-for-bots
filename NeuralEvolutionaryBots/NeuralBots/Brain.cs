@@ -7,14 +7,17 @@ namespace EvolutionaryPerceptron.MendelMachine {
         public int Index { get { return index; } }
         public float Fitness { get { return fitness; } }
         public bool On { get { return perceptron.W.Length > 0; } }
-        float fitness;
-        int index;
         public float lifeTime;
         MendelMachine mendelMachine;
         public Perceptron perceptron;
         public ActivationFunction activationFunction;
         public bool learningPhase;
+        [Header ("You can save the brain from the context menu")]
         public string brainPath;
+        float fitness;
+        int index;
+        private bool fail = false;
+
 
         public void AddFitness (float fitnessChange) { fitness += fitnessChange; }
         public double[, ] SetInput (double[, ] inputs) {
@@ -24,13 +27,33 @@ namespace EvolutionaryPerceptron.MendelMachine {
             return null;
         }
 
-        void Start () {
+        [ContextMenu ("Save brain")]
+        private void Save () {
+            if (!string.IsNullOrEmpty (brainPath)) {
+                FileStream fs = new FileStream (brainPath, FileMode.Create);
+                BinaryFormatter formatter = new BinaryFormatter ();
+                try {
+                    formatter.Serialize (fs, perceptron.GetGenoma);
+                } catch (SerializationException e) {
+                    Debug.Log ("Failed to serialize. Reason: " + e.Message);
+                    throw;
+                } finally {
+                    fs.Close ();
+                    Debug.Log ("Data saved");
+                }
+            } else {
+                Debug.Log ("Invalid path");
+            }
+
+        }
+
+        private void Start () {
             if (!learningPhase && !string.IsNullOrEmpty (brainPath)) {
 
                 try {
                     FileStream fs = new FileStream (brainPath, FileMode.Open);
                     BinaryFormatter formatter = new BinaryFormatter ();
-                    perceptron = new Perceptron (new Genoma ((LinearAlgebra.Matrix[]) formatter.Deserialize (fs)), activationFunction);
+                    perceptron = new Perceptron ((Genoma) formatter.Deserialize (fs), activationFunction);
                     fs.Close ();
                     Debug.Log ("Perceptron loaded");
                 } catch (SerializationException e) {
@@ -54,7 +77,6 @@ namespace EvolutionaryPerceptron.MendelMachine {
             perceptron = new Perceptron (genoma, activationFunction);
         }
 
-        bool fail = false;
         public void Destroy () {
             if (!learningPhase)
                 return;

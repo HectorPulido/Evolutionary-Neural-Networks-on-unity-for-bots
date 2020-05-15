@@ -96,18 +96,24 @@ namespace EvolutionaryPerceptron.MendelMachine {
         public static Genoma Mutate (
             Random r,
             Genoma gen,
-            float mutationRate,
-            float maxPerturbation) {
+            float stdDevMutatuion,
+            float maxPerturbation
+        ) {
             for (int layer = 0; layer < gen.W.Length; layer++) {
                 double[, ] m = gen.W[layer];
                 Matrix.MatrixLoop ((i, j) => {
-                    if (r.NextDouble () < mutationRate) {
-                        m[i, j] += (r.NextDouble () * 2f - 1f) * maxPerturbation;
-                    }
+                    m[i, j] += GaussianSystemRandom (r, stdDevMutatuion, maxPerturbation);
                 }, gen.W[layer].X, gen.W[layer].Y);
                 gen.W[layer] = m;
             }
             return gen;
         }
+        public static double GaussianSystemRandom (System.Random r, double stdDev, double height, double mean = 0) {
+            double u1 = 1.0 - r.NextDouble (); //uniform(0,1] System.Random doubles
+            double u2 = 1.0 - r.NextDouble ();
+            double randStdNormal = Math.Sqrt (-2.0 * Math.Log (u1)) * Math.Sin (2.0 * Math.PI * u2); //System.Random normal(0,1)
+            return (mean + stdDev * randStdNormal) * height; //System.Random normal(mean,stdDev^2)
+        }
+
     }
 }

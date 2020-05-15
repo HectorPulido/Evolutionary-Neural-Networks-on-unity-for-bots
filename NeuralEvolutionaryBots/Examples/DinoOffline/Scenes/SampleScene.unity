@@ -381,16 +381,16 @@ MonoBehaviour:
   dataPath: 
   numberOfGenerationsToSave: 0
   force: 0
-  activationFunction: 1
-  neuronsPerLayer: 1c000000ff00000002000000
+  activationFunction: 0
+  neuronsPerLayer: 1c0000003200000002000000
   seed: 3
-  sexualMultiplication: 1
+  sexualMultiplication: 0
   exponentialFitness: 1
-  mutationRate: 0.1
-  maxPerturbation: 1
   elitism: 10
   newIndividuals: 5
-  individualsPerGeneration: 100
+  individualsPerGeneration: 50
+  stdDevMutatuion: 0.1
+  maxPerturbation: 1
   prefab: {fileID: 8443493315498636557, guid: 1b6f78dd4099bdb43ace7f828f3a3d0a, type: 3}
   performanceMethod: 1
   generation: 0
@@ -402,10 +402,7 @@ MonoBehaviour:
   scrollAcceleration: 0.0025
   enemySpeed: 3
   enemyAcceleration: 0.2
-  index: 0
-  lifeTime: 500
-  initialPlace: {fileID: 515197716}
-  generationFraction: 25
+  startPoint: {fileID: 515197716}
 --- !u!1001 &750877981535044724
 PrefabInstance:
   m_ObjectHideFlags: 0

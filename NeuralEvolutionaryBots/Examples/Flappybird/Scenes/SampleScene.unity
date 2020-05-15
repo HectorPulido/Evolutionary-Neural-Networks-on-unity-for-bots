@@ -293,16 +293,16 @@ MonoBehaviour:
   dataPath: DataFlappy.mm
   numberOfGenerationsToSave: 20
   force: 0
-  activationFunction: 1
-  neuronsPerLayer: 050000000a00000001000000
+  activationFunction: 0
+  neuronsPerLayer: 0a0000001400000001000000
   seed: 99
   sexualMultiplication: 1
   exponentialFitness: 1
-  mutationRate: 0.1
-  maxPerturbation: 0.3
-  elitism: 4
+  elitism: 5
   newIndividuals: 3
   individualsPerGeneration: 50
+  stdDevMutatuion: 0.1
+  maxPerturbation: 1
   prefab: {fileID: 114514186583682724, guid: 3c0412d9565e1f14c9b9403e30defca6, type: 3}
   performanceMethod: 0
   generation: 0

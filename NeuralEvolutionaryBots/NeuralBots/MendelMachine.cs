@@ -26,11 +26,11 @@ namespace EvolutionaryPerceptron.MendelMachine {
         [Header ("Population parameters")]
         public bool sexualMultiplication;
         public bool exponentialFitness;
-        public float mutationRate = 0.1f;
-        public float maxPerturbation = 0.3f;
         public int elitism = 4;
         public int newIndividuals = 3;
         public int individualsPerGeneration = 10;
+        public float stdDevMutatuion = 0.1f;
+        public float maxPerturbation = 0.3f;
         public Brain prefab;
 
         [Header ("Indicators")]
@@ -67,10 +67,13 @@ namespace EvolutionaryPerceptron.MendelMachine {
             Individual individual,
             float lifeTime,
             Transform placeToInstantiate,
-            int index) {
-            Brain nb = Instantiate (prefab,
+            int index
+        ) {
+            Brain nb = Instantiate (
+                prefab,
                 placeToInstantiate.position,
-                placeToInstantiate.rotation);
+                placeToInstantiate.rotation
+            );
             nb.Initialize (this, individual.gen, activationFunction, learningPhase, lifeTime, index);
 
             return nb;
@@ -152,15 +155,13 @@ namespace EvolutionaryPerceptron.MendelMachine {
                 }
             }
 
-            var mean = 0.0f;
+            var sum = 0.0f;
             for (int i = 0; i < population.Count (); i++) {
-                mean += population[i].fitness;
+                sum += population[i].fitness;
             }
 
-            mean /= population.Count ();
-
             for (int i = 0; i < population.Count (); i++) {
-                population[i].fitness /= mean;
+                population[i].fitness /= sum;
             }
         }
 
@@ -178,7 +179,6 @@ namespace EvolutionaryPerceptron.MendelMachine {
 
         private Individual[] SortPopulation () {
             return population.OrderByDescending (o => o.fitness).ToArray ();
-            //return SortedList.ToArray ();
         }
 
         private Individual[] CrossPopulation () {
@@ -198,11 +198,7 @@ namespace EvolutionaryPerceptron.MendelMachine {
                     var p1 = poolSelection (tempPopulation);
                     var p2 = poolSelection (tempPopulation);
                     Individual individual = new Individual {
-                        gen = Genoma.Cross (
-                        r,
-                        p1.gen,
-                        p2.gen
-                        ),
+                        gen = Genoma.Cross (r, p1.gen, p2.gen),
                         fitness = 0
                     };
 
@@ -239,7 +235,7 @@ namespace EvolutionaryPerceptron.MendelMachine {
                 population[i].gen = Genoma.Mutate (
                     r,
                     population[i].gen,
-                    mutationRate,
+                    stdDevMutatuion,
                     maxPerturbation
                 );
             }

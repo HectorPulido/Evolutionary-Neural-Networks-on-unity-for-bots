@@ -224,7 +224,7 @@ MonoBehaviour:
   offsetAngle: -30
   arcAngle: 45
   maxDistance: 20
-  showRaycast: 1
+  showRaycast: 0
 --- !u!50 &8443493315498636559
 Rigidbody2D:
   serializedVersion: 4
