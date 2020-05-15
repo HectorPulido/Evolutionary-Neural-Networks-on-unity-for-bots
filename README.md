@@ -128,7 +128,9 @@ The fitnes function is, how many checkpoints it touch and the Die function is th
 
 ### Flappy bird bots
 ![Flappy Bot](/Images/Flappy.gif) <br/>
-This is a flappy bird game bot made with this library, the sensors are 3 raycast, the position, and the center of the obstacles
+This is a flappy bird game bot made with this library, the sensors are 3 raycast, the position, and the center of the obstacles<br/>
+[![Flappy bird bot](https://img.youtube.com/vi/9BIe80WGhxY/0.jpg)](https://www.youtube.com/watch?v=9BIe80WGhxY)
+
 
 ### Dinosaur clone bots
 ![Dinosaur](/Images/DinoChrome.gif) <br/>
