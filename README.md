@@ -118,7 +118,7 @@ Now you can select the bot you want to save, and press the save button, that wil
 ## EXAMPLES
 In this moments there are 4 examples 
 ### Self driving car
-![Self driving car](/Images/SelfDriving%20car.jpg "Self driving car")<br/>
+![Self driving car](https://github.com/HectorPulido/Evolutionary-Neural-Networks-on-unity-for-bots/blob/master/Images/SelfDriving%20car.jpg "Self driving car")<br/>
 
 An automatic Car in unity, it can be trained on just 10 generations, the sensors are Raycast and the actuator is the Unity Standard Asset Vehicle Car
 
@@ -126,12 +126,12 @@ An automatic Car in unity, it can be trained on just 10 generations, the sensors
 The fitnes function is, how many checkpoints it touch and the Die function is the collision with the tag "Obstacle"
 
 ### Flappy bird bots
-![Flappy Bot](/Images/Flappy.gif) <br/>
+![Flappy Bot](https://github.com/HectorPulido/Evolutionary-Neural-Networks-on-unity-for-bots/blob/master/Images/Flappy.gif) <br/>
 This is a flappy bird game bot made with this library, the sensors are 3 raycast, the position, and the center of the obstacles<br/>
 
 
 ### Dinosaur clone bots
-![Dinosaur](/Images/DinoChrome.gif) <br/>
+![Dinosaur](https://github.com/HectorPulido/Evolutionary-Neural-Networks-on-unity-for-bots/blob/master/Images/DinoChrome.gif) <br/>
 This is a google chrome clone, it have 7 raycast as sensor aditional to the 7 raycast of the last frame, and 2 buttons as outputs also the fitness function is the lifetime
 
 #### Fitness function
@@ -151,7 +151,7 @@ https://github.com/HectorPulido/Asteroids-like-game <br/>
 Assets Licence: MIT
 
 ### Survival bot
-![Survival Bot](/Images/Survival.gif "Survival Bot")<br/>
+![Survival Bot](https://raw.githubusercontent.com/HectorPulido/Evolutionary-Neural-Networks-on-unity-for-bots/master/Images/Survival.gif "Survival Bot")<br/>
 This is an implementation of the algorithm in the [Survival shooter project from Unity Tec. ](https://www.assetstore.unity3d.com/en/#!/content/40756) 
 The sensors are a lot of raycast that detect shootables, and enemies, and the die function is when the life gets 0 
 
@@ -166,14 +166,14 @@ https://github.com/HectorPulido/Evolutionary-Neural-Bots-On-Survival-Shooter <br
 Assets Licence: Apache 2.0
 
 ### PONG Bot
-![Pong Bot](/Images/Pong.gif "Pong Bot")<br/>
+![Pong Bot](https://github.com/HectorPulido/Evolutionary-Neural-Networks-on-unity-for-bots/blob/master/Images/Pong.gif "Pong Bot")<br/>
 This is an implementation for the pong game, the sensors are the position and velocity of the ball, the the position and the velocity of the enemy racket and the position of the racket (All the position must be locals) 
 #### Fitness function
 Pro point add one of fitness point <br/>
 Contra point remove one of fitness point <br/>
 
 ## This program uses 
-1. [Simple Linear Algebra for C#](https://github.com/HectorPulido/Simple_Linear_Algebra?raw=true)
+1. [Simple Linear Algebra for C#](https://github.com/HectorPulido/Simple_Linear_Algebra)
 
 ## OTHER WORKS 
 ### IMITATION LEARNING IN UNITY
