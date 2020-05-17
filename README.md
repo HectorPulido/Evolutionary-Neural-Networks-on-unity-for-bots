@@ -2,18 +2,17 @@
 
 This is a simple asset that train a neural networks using genetic algorithm in unity to make a bot that can play a game or just interact with the envoriment
 
-## TO DO
-- More examples
-- Cleaner interface to set the fitness
-
 ## HOW IT WORKS
+
+[![Flappy bird bot](https://img.youtube.com/vi/9BIe80WGhxY/0.jpg)](https://www.youtube.com/watch?v=9BIe80WGhxY)
+
 First of anything I will explain the concept of Genetic algorithm: This is a algorithm based on the process of natural selection that works crossovering certains individuals and mutate them with the goal of get a more ideal individuals for a work.
 
 Now the neural network is just a matematical function that can imitate or aproximate to any other matematical function, is the universal approximator. One of this function can be the "Being the most enjoyable final boss" or "Being the most human like chatbot" or "Being the most difficult enemy", so usually the neural network is training using the backpropagation algorithm. But this is a pretty complex algorithm to do, and it does not works when you don't really know the function that you want
 
 Here the Genetic algorithm can help us, just crossover a lot of neural networks and choose the most adapted one
 
-![How it works](https://github.com/HectorPulido/Evolutionary-Neural-Networks-on-unity-for-bots/blob/master/Images/How%20it%20works.jpg "How it works")
+![How it works](https://raw.githubusercontent.com/HectorPulido/Evolutionary-Neural-Networks-on-unity-for-bots/master/Images/How%20it%20works.jpg "How it works")
 
 
 ## WHY (MOTIVATION)
@@ -129,7 +128,6 @@ The fitnes function is, how many checkpoints it touch and the Die function is th
 ### Flappy bird bots
 ![Flappy Bot](/Images/Flappy.gif) <br/>
 This is a flappy bird game bot made with this library, the sensors are 3 raycast, the position, and the center of the obstacles<br/>
-[![Flappy bird bot](https://img.youtube.com/vi/9BIe80WGhxY/0.jpg)](https://www.youtube.com/watch?v=9BIe80WGhxY)
 
 
 ### Dinosaur clone bots
@@ -202,6 +200,6 @@ https://github.com/HectorPulido/Vectorized-multilayer-neural-network
 - Or Look at a Non Vectorized multilayer perceptronExample
 - https://github.com/HectorPulido/Multi-layer-perceptron
 
-## Patreon
-Please consider Support on Patreon
-- https://www.patreon.com/HectorPulido
+## TO DO
+- More examples
+- Cleaner interface to set the fitness
