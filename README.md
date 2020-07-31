@@ -24,6 +24,10 @@ https://www.youtube.com/c/HectorAndresPulidoPalmar <br/>
 Twitch Channel<br/>
 https://www.twitch.tv/hector_pulido_<br/>
 
+## TO DO
+- More examples
+- Cleaner interface to set the fitness
+
 ## HOW TO USE
 Open it on unity 2018 or greater (sorry about that >-< ), is also recomended to set the scripting runtime version in .Net 4.X, you can make your own envoriment and set the fitness function, but I recomend, to look at the examples.
 
@@ -200,6 +204,3 @@ https://github.com/HectorPulido/Vectorized-multilayer-neural-network
 - Or Look at a Non Vectorized multilayer perceptronExample
 - https://github.com/HectorPulido/Multi-layer-perceptron
 
-## TO DO
-- More examples
-- Cleaner interface to set the fitness
