@@ -4,7 +4,7 @@ This is a simple asset that train a neural networks using genetic algorithm in u
 
 ## HOW IT WORKS
 
-[![Flappy bird bot](https://img.youtube.com/vi/9BIe80WGhxY/0.jpg)](https://www.youtube.com/watch?v=9BIe80WGhxY)
+[![Flappy bird bot](https://img.youtube.com/vi/9BIe80WGhxY/0.jpg)](https://www.youtube.com/watch?v=9BIe80WGhxY&list=PLHdk97dabfvyLMWXW6gC3_MjiMo7nLPYp&index=14)
 
 First of anything I will explain the concept of Genetic algorithm: This is a algorithm based on the process of natural selection that works crossovering certains individuals and mutate them with the goal of get a more ideal individuals for a work.
 
@@ -18,7 +18,7 @@ Here the Genetic algorithm can help us, just crossover a lot of neural networks 
 ## WHY (MOTIVATION)
 I wanted to sell this asset on the store, but Unity ML attacked and I couldn't, so I release it, It's a pretty good and simple experiment, to learn neural networks without backpropagation. <br/>
 So this was made for my youtube, and twitch channels <br/>
-[![Banner](http://img.youtube.com/vi/ckSKdjosxc8/0.jpg)](http://www.youtube.com/watch?v=ckSKdjosxc8) <br/>
+[![Banner](http://img.youtube.com/vi/ckSKdjosxc8/0.jpg)](https://www.youtube.com/watch?v=ckSKdjosxc8&list=PLHdk97dabfvyLMWXW6gC3_MjiMo7nLPYp&index=4) <br/>
 Youtube channel <br/>
 https://www.youtube.com/c/HectorAndresPulidoPalmar <br/>
 Twitch Channel<br/>
