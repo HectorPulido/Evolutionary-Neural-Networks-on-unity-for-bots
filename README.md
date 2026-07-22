@@ -28,6 +28,10 @@ https://www.twitch.tv/hector_pulido_<br/>
 - More examples
 - Cleaner interface to set the fitness
 
+## Examples
+
+- [Survival Shooter bots](Examples/SurvivalShooter) - a full Unity Survival Shooter project where the enemies evolve with this asset. It used to live in its own repo (`Evolutionary-Neural-Bots-On-Survival-Shooter`); now it is included here.
+
 ## HOW TO USE
 Open it on unity 2018 or greater (sorry about that >-< ), is also recomended to set the scripting runtime version in .Net 4.X, you can make your own envoriment and set the fitness function, but I recomend, to look at the examples.
 
